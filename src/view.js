@@ -1,28 +1,34 @@
+const getElement = Symbol()
+const onAddItem = Symbol()
+const bindEvents = Symbol()
+const noop = ()=>{}
+
 export default class View {
+
     constructor(rootSelector){
         this.rootSelector = rootSelector
-        this.$newTodo = this._getElement('.new-todo')
-        this.$todoList = this._getElement('.todo-list')
+        this.$newTodo = this[getElement]('.new-todo')
+        this.$todoList = this[getElement]('.todo-list')
 
         this.eventHandlers = {
-            onAddItem: ()=>{}
+            onAddItem: noop
         }
 
-        this._bindEvents()
+        this[bindEvents]()
     }
 
-    _getElement(root){
+    [getElement](root){
         return document.querySelector(this.rootSelector + ' ' + root)
     }
 
-    _onAddItem(item){
+    [onAddItem](item){
         this.eventHandlers.onAddItem(item)
     }
 
-    _bindEvents(){
+    [bindEvents](){
         this.$newTodo.addEventListener('change', ({target})=>{
             let title = target.value.trim()
-            this._onAddItem({title})
+            this[onAddItem]({title})
         })
     }
 
