@@ -1,7 +1,10 @@
 'use strict'
 
 import Store from './store'
+import View from './view'
 
-const store = new Store('the-store')
+const view = new View('#the-app')
 
-console.log(store)
+window.addEventListener('load', () => {
+    view.render()
+})
