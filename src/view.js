@@ -1,9 +1,12 @@
 const getElement = Symbol()
-const onAddItem = Symbol()
 const bindEvents = Symbol()
+const onAddItem = Symbol()
 const noop = ()=>{}
+const events = {
+    onAddItem: "called when item is added"
+}
 
-export default class View {
+class View {
 
     constructor(rootSelector){
         this.rootSelector = rootSelector
@@ -11,7 +14,7 @@ export default class View {
         this.$todoList = this[getElement]('.todo-list')
 
         this.eventHandlers = {
-            onAddItem: noop
+            [events.onAddItem]: noop
         }
 
         this[bindEvents]()
@@ -22,7 +25,7 @@ export default class View {
     }
 
     [onAddItem](item){
-        this.eventHandlers.onAddItem(item)
+        this.eventHandlers[events.onAddItem](item)
     }
 
     [bindEvents](){
@@ -40,3 +43,5 @@ export default class View {
         }
     }
 }
+
+export {View, events}
