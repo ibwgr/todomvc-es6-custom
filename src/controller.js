@@ -1,9 +1,9 @@
 export default class Controller{
-    constructor(view){
+    constructor(view, viewEvents){
         this.view = view
 
         view.registerEventHandlers({
-            onAddItem: this.addItem
+            [viewEvents.onAddItem]: this.addItem
         })
     }
 
