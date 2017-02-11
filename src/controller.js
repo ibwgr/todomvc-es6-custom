@@ -12,7 +12,7 @@ export default class Controller{
     }
 
     addItem(item){
-        this.store.insert(item)
+        this.store.add(item)
         this.view.add(item)
     }
 
