@@ -1,13 +1,15 @@
 export default class Controller{
-    constructor(view, viewEvents){
+    constructor(view, viewEvents, store){
         this.view = view
+        this.store = store
 
         view.registerEventHandlers({
-            [viewEvents.onAddItem]: this.addItem
+            [viewEvents.onAddItem]: this.addItem.bind(this)
         })
     }
 
     addItem(item){
-        console.log('going to add', item.title, 'to the storage')
+        this.store.insert(item)
+        this.view.renderItems(this.store.all())
     }
 }

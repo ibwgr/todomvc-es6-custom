@@ -42,6 +42,10 @@ class View {
             }
         }
     }
+
+    renderItems(items){
+        this.$todoList.innerHTML = items.map((item)=>`<li>${item.title}</li>`).join('')
+    }
 }
 
 export {View, events}
