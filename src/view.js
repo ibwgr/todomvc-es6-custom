@@ -44,7 +44,7 @@ class View {
     }
 
     renderItems(items){
-        this.$todoList.innerHTML = items.map((item)=>`<li>${item.title}</li>`).join('')
+        this.$todoList.innerHTML = items.map((item)=>`<li><label>${item.title}</label></li>`).join('')
     }
 }
 
