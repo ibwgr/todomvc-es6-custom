@@ -4,7 +4,8 @@ export default class Controller{
         this.store = store
 
         view.registerEventHandlers({
-            [viewEvents.onAddItem]: this.addItem.bind(this)
+            [viewEvents.onAddItem]: this.addItem.bind(this),
+            [viewEvents.onRemoveItem]: this.removeItem.bind(this)
         })
 
         view.renderItems(store.all())
@@ -13,5 +14,10 @@ export default class Controller{
     addItem(item){
         this.store.insert(item)
         this.view.renderItems(this.store.all())
+    }
+
+    removeItem(id){
+        this.store.remove(id)
+        this.view.remove(id)
     }
 }
