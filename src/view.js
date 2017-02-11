@@ -31,7 +31,9 @@ class View {
     [bindEvents](){
         this.$newTodo.addEventListener('change', ({target})=>{
             let title = target.value.trim()
-            this[onAddItem]({title})
+            if(title.length)
+                this[onAddItem]({title})
+            this.$newTodo.value = ''
         })
     }
 
