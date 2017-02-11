@@ -59,18 +59,27 @@ class View {
     }
 
     renderItems(items){
-        this.$todoList.innerHTML = items.map((item)=>`
-            <li data-id="${item.id}">
-                <label>${item.title}</label>
-                <button class="destroy"></button>
-            </li>`)
-            .join('')
+        this.$todoList.innerHTML = items.map(this.renderItem).join('')
+    }
+
+    renderItem(item){
+        return `<li data-id="${item.id}">
+            <label>${item.title}</label>
+            <button class="destroy"></button>
+        </li>`;
     }
 
     remove(id){
         let elem = this.$todoList.querySelector(`[data-id='${id}']`)
         if(elem)
             this.$todoList.removeChild(elem)
+    }
+
+    add(item){
+        let elem = document.createElement('div')
+        let html = this.renderItem(item)
+        elem.innerHTML = html
+        this.$todoList.appendChild(elem.childNodes[0])
     }
 }
 
