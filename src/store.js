@@ -2,6 +2,14 @@
 
 export default class Store{
     constructor(){
-        let a = 0
+        this.items = []
+    }
+
+    insert(item){
+        this.items.push(item)
+    }
+
+    all(){
+        return this.items
     }
 }
