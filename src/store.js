@@ -15,7 +15,7 @@ export default class Store{
         this.items = JSON.parse(this.localStorage.getItem(this.name) || '[]')
     }
 
-    insert(item){
+    add(item){
         this.items.push(item)
         this._persist()
     }

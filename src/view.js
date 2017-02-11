@@ -23,8 +23,8 @@ class View {
         this[bindEvents]()
     }
 
-    [getElement](root){
-        return document.querySelector(this.rootSelector + ' ' + root)
+    [getElement](selector){
+        return document.querySelector(this.rootSelector + ' ' + selector)
     }
 
     [onAddItem](item){
