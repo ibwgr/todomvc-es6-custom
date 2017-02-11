@@ -13,7 +13,7 @@ export default class Controller{
 
     addItem(item){
         this.store.insert(item)
-        this.view.renderItems(this.store.all())
+        this.view.add(item)
     }
 
     removeItem(id){
