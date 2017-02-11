@@ -20,6 +20,12 @@ export default class Store{
         this._persist()
     }
 
+    remove(id){
+        let indexToRemove = this.items.findIndex(item=>item.id)
+        this.items.splice(indexToRemove, 1)
+        this._persist()
+    }
+
     all(){
         return this.items
     }

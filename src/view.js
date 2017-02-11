@@ -1,9 +1,11 @@
 const getElement = Symbol()
 const bindEvents = Symbol()
 const onAddItem = Symbol()
+const onRemoveItem = Symbol()
 const noop = ()=>{}
 const events = {
-    onAddItem: "called when item is added"
+    onAddItem: "called when add item action was triggered",
+    onRemoveItem: "called when item remove action was triggered"
 }
 
 class View {
@@ -14,7 +16,8 @@ class View {
         this.$todoList = this[getElement]('.todo-list')
 
         this.eventHandlers = {
-            [events.onAddItem]: noop
+            [events.onAddItem]: noop,
+            [events.onRemoveItem]: noop
         }
 
         this[bindEvents]()
@@ -28,12 +31,22 @@ class View {
         this.eventHandlers[events.onAddItem](item)
     }
 
+    [onRemoveItem](item){
+        this.eventHandlers[events.onRemoveItem](item)
+    }
+
     [bindEvents](){
         this.$newTodo.addEventListener('change', ({target})=>{
             let title = target.value.trim()
             if(title.length)
-                this[onAddItem]({title})
+                this[onAddItem]({id: Date.now(), title})
             this.$newTodo.value = ''
+        })
+
+        this.$todoList.addEventListener('click', ({target})=>{
+            if(target.classList.contains('destroy')){
+                this[onRemoveItem](target.parentNode.dataset.id)
+            }
         })
     }
 
@@ -46,7 +59,18 @@ class View {
     }
 
     renderItems(items){
-        this.$todoList.innerHTML = items.map((item)=>`<li><label>${item.title}</label></li>`).join('')
+        this.$todoList.innerHTML = items.map((item)=>`
+            <li data-id="${item.id}">
+                <label>${item.title}</label>
+                <button class="destroy"></button>
+            </li>`)
+            .join('')
+    }
+
+    remove(id){
+        let elem = this.$todoList.querySelector(`[data-id='${id}']`)
+        if(elem)
+            this.$todoList.removeChild(elem)
     }
 }
 
