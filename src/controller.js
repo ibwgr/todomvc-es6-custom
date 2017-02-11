@@ -6,6 +6,8 @@ export default class Controller{
         view.registerEventHandlers({
             [viewEvents.onAddItem]: this.addItem.bind(this)
         })
+
+        view.renderItems(store.all())
     }
 
     addItem(item){
