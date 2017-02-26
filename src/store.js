@@ -21,7 +21,7 @@ export default class Store{
     }
 
     remove(id){
-        let indexToRemove = this.items.findIndex(item=>item.id)
+        let indexToRemove = this.items.findIndex(item=>item.id==id)
         this.items.splice(indexToRemove, 1)
         this._persist()
     }
