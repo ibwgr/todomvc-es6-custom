@@ -6,6 +6,7 @@ npm i -g yarn
 yarn init
 yarn install
 yarn global add eslint
+yarn global add gulp
 
 install eslint plugin in intellij
 configure eslint
