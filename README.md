@@ -1,45 +1,53 @@
-new project web static
-new src/index.html
+### Install
 
-install npm
-npm i -g yarn
-yarn init
-yarn install
-yarn global add eslint
-yarn global add gulp
+1. install npm (shipped with node. nvm recommended for node install)
+1. `npm i -g yarn`
+1. `yarn install`
+1. `yarn global add eslint`
+1. `yarn global add gulp`
+1. install eslint plugin in intellij
 
-install eslint plugin in intellij
-configure eslint
+### Usage
+Build & serve web application:  `gulp`
 
-gulp
+### History
 
 **a9c8a4f**
-explain project.
-toolchain with gulpfile, eslint, yarn
-index.html with script and es6 imports
+* toolchain with gulpfile, eslint, yarn
+* index.html with script and es6 imports
 
 **47a8975**
-creating instance from class.
-template string
-dom manipulation
+* creating instance from class.
+* template string
+* dom manipulation
 
 **c84e274**
-event handler
+* event handler
 
 **a1301b2**
-controller. 
-handles events from view.
-"private" methods
-higher order functions
+* controller. 
+* handles events from view.
+* "private" methods
+* higher order functions
 
 **1302ee6**
-real private methods with es6 symbol
+* real private methods with es6 symbol
 
 **46a1658**
-export events. import as, multi export
+* export events. 
+* import as, multi export
 
 **f9d9b4d**
-bind, innerHTML, map
+* bind
+* innerHTML
+* map
 
 **4fb5801**
-local storage, JSON
+* local storage
+* JSON
+
+### New Web Project
+file > new project > web static
+
+file > new > src/index.html
+
