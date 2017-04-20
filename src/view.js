@@ -1,3 +1,6 @@
+'use strict'
+import SiblingIterator from './sibling-iterator.js'
+
 const getElement = Symbol()
 const bindEvents = Symbol()
 const onAddItem = Symbol()
@@ -28,19 +31,25 @@ class View {
     }
 
     [onAddItem](item){
-        this.eventHandlers[events.onAddItem](item)
+        return this.eventHandlers[events.onAddItem](item)
     }
 
     [onRemoveItem](item){
-        this.eventHandlers[events.onRemoveItem](item)
+        return this.eventHandlers[events.onRemoveItem](item)
     }
 
     [bindEvents](){
+        document.addEventListener('input', ({target})=>{
+            this.resetMsgs(target)
+        })
+
         this.$newTodo.addEventListener('change', ({target})=>{
-            let title = target.value.trim()
-            if(title.length)
-                this[onAddItem]({id: Date.now(), title})
-            this.$newTodo.value = ''
+            let validator = this[onAddItem]({id: Date.now(), title: target.value.trim()})
+            this.renderMsgs(this.$newTodo, validator)
+
+            if(!validator.hasErrors){
+                this.$newTodo.value = ''
+            }
         })
 
         this.$todoList.addEventListener('click', ({target})=>{
@@ -48,6 +57,24 @@ class View {
                 this[onRemoveItem](target.parentNode.dataset.id)
             }
         })
+    }
+
+    resetMsgs($el){
+        for(let sibling of new SiblingIterator($el)){
+            if(sibling.classList && sibling.classList.contains('error')){
+                sibling.parentNode.removeChild(sibling)
+            }
+        }
+    }
+
+    renderMsgs($el, val){
+        if(val.hasErrors){
+            let [err] = val.errors
+            let $msg = document.createElement('div')
+            $msg.innerText = err.text
+            $msg.classList.add(err.level)
+            $el.parentNode.insertBefore($msg, $el.nextSibling)
+        }
     }
 
     registerEventHandlers(handlers){

@@ -13,7 +13,9 @@ function compile(watch) {
             entries: ['./src/app.js'],
             debug: true,
             extensions: [' ', 'js']
-        }).transform(babel.configure({
+        })
+        .add("node_modules/babel-polyfill")
+        .transform(babel.configure({
             presets: ["es2015"]
         })));
 
