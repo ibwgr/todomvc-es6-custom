@@ -60,6 +60,14 @@ class View {
     }
 
     resetMsgs($el){
+        /**
+        function* itGen($ele){
+            let sibling
+            while((sibling = $ele.nextSibling) != null){
+                yield sibling
+            }
+        }
+        */
         for(let sibling of new SiblingIterator($el)){
             if(sibling.classList && sibling.classList.contains('error')){
                 sibling.parentNode.removeChild(sibling)
