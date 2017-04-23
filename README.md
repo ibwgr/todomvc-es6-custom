@@ -7,6 +7,16 @@
 1. `yarn global add gulp`
 1. install eslint plugin in intellij
 
+### Vorgehen Unterricht
+- install & add stylez	
+- move ctrls view-logic to view
+	- view: private methods (renderItem, getElement) using unexported consts, symbols and destructering
+- export events, register event handlers in controller
+	- ctrl: delegate "add" to view (impelement view.add)
+	- introduce store
+	- delegate "add" to store
+
+
 ### Usage
 Build & serve web application:  `gulp`
 
