@@ -9,7 +9,7 @@ export default class Store{
         let headers = new Headers({
             'Content-Type': 'application/json'
         })
-        fetch('http://localhost:3100/items', {
+        return fetch('http://localhost:3100/items', {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(item)
@@ -26,5 +26,18 @@ export default class Store{
     }
 
     all(){
+        let headers = new Headers({
+            'Accept': 'application/json'
+        })
+        return fetch('http://localhost:3100/items', {
+            method: 'GET',
+            headers: headers
+        }).then((response)=>{
+            if(response.ok){
+                return response.json()
+            }else{
+                return Promise.reject(response)
+            }
+        })
     }
 }
