@@ -1,6 +1,6 @@
 'use strict'
 
-import Store from './store'
+import Store from './store.remote'
 import {View, events as viewEvents} from './view'
 import Controller from './controller'
 
