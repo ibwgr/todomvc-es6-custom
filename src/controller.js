@@ -9,7 +9,9 @@ export default class Controller{
             [viewEvents.onRemoveItem]: this.removeItem.bind(this)
         })
 
-        store.all().then(view.renderItems.bind(view))
+        store.all()
+        .then(view.renderItems.bind(view))
+        .catch(view.renderError.bind(view))
     }
 
     addItem(item){

@@ -85,6 +85,25 @@ class View {
         }
     }
 
+    renderError(error){
+        console.error('Fehler in TodoMVC App', error)
+        let text = error
+
+        if(error instanceof Response){
+            text = `${error.status} ${error.statusText}`
+        }
+
+        this.renderMsgs(this.$newTodo, {
+            hasErrors: true,
+            errors: [
+                {
+                    text: `Allgemeiner Fehler (${text})`,
+                    level: 'error'
+                }
+            ]
+        })
+    }
+
     registerEventHandlers(handlers){
         for(let event in handlers){
             if(this.eventHandlers[event]){

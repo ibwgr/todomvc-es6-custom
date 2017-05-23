@@ -8,17 +8,13 @@
 1. install eslint plugin in intellij
 
 ### Vorgehen Unterricht
-- install & add stylez	
-- move ctrls view-logic to view
-	- view: private methods (renderItem, getElement) using unexported consts, symbols and destructering
-- export events, register event handlers in controller
-	- ctrl: delegate "add" to view (impelement view.add)
-	- introduce store
-	- delegate "add" to store
+- Demonstrate Error Handling (self, aim with self)
+- Fix Server JSON Response
+- Build Client Error Handling
 
 
 ### Usage
-Build & serve web application:  `gulp`
+Build & serve web application: `gulp`
 
 ### History
 
