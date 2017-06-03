@@ -10,13 +10,12 @@ const connect = require('gulp-connect');
 function compile(watch) {
     const bundler = watchify(
         browserify({
-            entries: ['./src/app.js'],
+            entries: ['node_modules/babel-polyfill', 'node_modules/whatwg-fetch', './src/app.js'],
             debug: true,
             extensions: [' ', 'js']
         })
-        .add("node_modules/babel-polyfill")
         .transform(babel.configure({
-            presets: ["es2015"]
+            presets: ['es2015']
         })));
 
     function rebundle() {
