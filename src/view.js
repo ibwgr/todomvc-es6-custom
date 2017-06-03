@@ -1,5 +1,6 @@
 'use strict'
 import SiblingIterator from './sibling-iterator.js'
+import he from 'he'
 
 const getElement = Symbol()
 const bindEvents = Symbol()
@@ -117,8 +118,8 @@ class View {
     }
 
     renderItem(item){
-        return `<li data-id="${item.id}">
-            <label>${item.title}</label>
+        return `<li data-id="${he.encode(item.id.toString())}">
+            <label>${he.encode(item.title)}</label>
             <button class="destroy"></button>
         </li>`;
     }

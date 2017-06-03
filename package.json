@@ -16,6 +16,7 @@
     "gulp": "^3.9.1",
     "gulp-connect": "^5.0.0",
     "gulp-sourcemaps": "^2.4.1",
+    "he": "^1.1.1",
     "mocha": "^3.4.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
