@@ -7,11 +7,13 @@ export default class Store{
 
     add(item){
         let headers = new Headers({
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         })
         return fetch('http://localhost:3100/items', {
             method: 'POST',
             headers: headers,
+            credentials: 'include',
             body: JSON.stringify(item)
         }).then((response)=>{
             if(response.ok){
