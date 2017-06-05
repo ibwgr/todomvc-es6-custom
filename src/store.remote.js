@@ -15,16 +15,32 @@ export default class Store{
             headers: headers,
             credentials: 'include',
             body: JSON.stringify(item)
-        }).then((response)=>{
-            if(response.ok){
-                return Promise.resolve(response)
+        }).then((resp)=>{
+            if(resp.ok){
+                return Promise.resolve(resp)
             }else{
-                return Promise.reject(response)
+                return Promise.reject(resp)
             }
         })
     }
 
     remove(id){
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        })
+        return fetch(`http://localhost:3100/items/${encodeURIComponent(id.toString())}/`, {
+            method: 'DELETE',
+            headers: headers,
+            credentials: 'include',
+            body: JSON.stringify({id})
+        }).then((resp)=>{
+            if(resp.ok){
+                return Promise.resolve(resp)
+            }else{
+                return Promise.reject(resp)
+            }
+        })
     }
 
     all(){
@@ -33,12 +49,13 @@ export default class Store{
         })
         return fetch('http://localhost:3100/items', {
             method: 'GET',
-            headers: headers
-        }).then((response)=>{
-            if(response.ok){
-                return response.json()
+            headers: headers,
+            credentials: 'include'
+        }).then((resp)=>{
+            if(resp.ok){
+                return resp.json()
             }else{
-                return Promise.reject(response)
+                return Promise.reject(resp)
             }
         })
     }

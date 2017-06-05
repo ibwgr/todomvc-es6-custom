@@ -25,7 +25,7 @@ export default class Controller{
 
     removeItem(id){
         this.store.remove(id)
-        this.view.remove(id)
+            .then(this.view.remove.bind(this.view, id))
     }
 
     validateNewItem(item){
