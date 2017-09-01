@@ -5,6 +5,10 @@ pipeline {
       steps {
         sh 'npm install'
         sh 'gulp build'
+        withNPM(npmrcConfig: 'main') {
+          sh 'npm install'
+        }
+        
       }
     }
     stage('Test') {
