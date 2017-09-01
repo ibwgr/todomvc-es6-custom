@@ -3,9 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'npm install'
-        sh 'gulp build'
-        withNPM(npmrcConfig: 'main') {
+        node(label: 'nodeify') {
           sh 'npm install'
         }
         
