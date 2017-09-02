@@ -2,13 +2,13 @@ pipeline {
   agent any
   stages {
     stage('Initialize') {
+      node {
+          env.NODEJS_HOME = "${tool 'node-8'}"
+          env.PATH="${env.NODEJS_HOME}:${env.PATH}" // on windows node use ;
+          sh 'npm --version'
+      }
       steps {
-        echo 'Initializing...'
-        node {
-            env.NODEJS_HOME = "${tool 'node-8'}"
-            env.PATH="${env.NODEJS_HOME}:${env.PATH}" // on windows node use ;
-            sh 'npm --version'
-        }
+        echo 'Initializing ...'
       }
     }
 
