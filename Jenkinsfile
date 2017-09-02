@@ -4,8 +4,11 @@ pipeline {
     stage('Initialize') {
       steps {
         echo 'Initializing...'
-        def node = tool name: 'Node-7.4.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-        env.PATH = "${node}/bin:${env.PATH}"
+        node {
+            env.NODEJS_HOME = "${tool 'node-8'}"
+            env.PATH="${env.NODEJS_HOME}:${env.PATH}" // on windows node use ;
+            sh 'npm --version'
+        }
       }
     }
 
