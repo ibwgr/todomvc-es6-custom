@@ -10,7 +10,7 @@ const connect = require('gulp-connect');
 function compile(watch) {
     const bundler = watchify(
         browserify({
-            entries: ['node_modules/babel-polyfill', 'node_modules/whatwg-fetch', './src/app.js'],
+            entries: ['node_modules/babel-polyfill', 'node_modules/whatwg-fetch', './src/app/app.js'],
             debug: true,
             extensions: [' ', 'js']
         })
@@ -44,12 +44,21 @@ function compile(watch) {
     rebundle();
 }
 
+function assets(){
+    gulp.src('./src/app/index.html')
+        .pipe(gulp.dest('./build/'));
+    gulp.src('./node_modules/todomvc-app-css/index.css')
+        .pipe(gulp.dest('./build/'));
+}
+
 function watch() {
-    return compile(true);
+    compile(true);
+    return assets();
 };
 
 gulp.task('build', function () {
-    return compile();
+    compile();
+    return assets();
 });
 gulp.task('watch', function () {
     return watch();

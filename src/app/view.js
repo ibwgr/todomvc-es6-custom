@@ -1,5 +1,5 @@
 'use strict'
-import SiblingIterator from './sibling-iterator.js'
+import SiblingIterator from './lib/sibling-iterator.js'
 import he from 'he'
 
 const getElement = Symbol()
