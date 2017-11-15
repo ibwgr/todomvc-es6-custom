@@ -1,6 +1,8 @@
-const webdriver = require('selenium-webdriver');
-const chrome = require('selenium-webdriver/chrome');
-const chromedriver = require('chromedriver');
+import webdriver from 'selenium-webdriver'
+import chrome from 'selenium-webdriver/chrome'
+import chromedriver from 'chromedriver'
+import $q from 'q'
+import default_config from './config.js'
 
 const setupDriver = function(config){
   // dynamically get path of chrome binary
@@ -13,4 +15,20 @@ const setupDriver = function(config){
     .build();
 };
 
-exports.setupDriver = setupDriver;
+function async_it(driver, spec, runner){
+  it(spec, function(done){
+    runner.call(this)
+    driver.wait($q.resolve()).then(done)
+  })
+}
+
+export default function init(config = default_config){
+  let driver = setupDriver(config)
+  return {
+    async_it: function(...args){
+      async_it(driver, ...args)
+    },
+    driver,
+    config
+  }
+}
