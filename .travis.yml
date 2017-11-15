@@ -4,8 +4,8 @@ node_js:
   - "7"
 addons:
   chrome: stable
-before_install:
+before_script:
   - npm run start &
-  - ./node_modules/.bin/chromedriver --url-base=wd/hub --port=4444
+  - ./node_modules/.bin/chromedriver --url-base=wd/hub --port=4444 &
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:8008 &
 
