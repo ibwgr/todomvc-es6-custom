@@ -5,7 +5,10 @@
   "author": "Ueli Kunz",
   "license": "MIT",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --require babel-register src/test/unit/**.js"
+    "start": "./node_modules/.bin/gulp",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "./node_modules/.bin/mocha --require babel-register src/test/unit/**.js",
+    "test:e2e": "./node_modules/.bin/mocha src/test/e2e/*.test.js"
   },
   "devDependencies": {
     "babel-polyfill": "^6.23.0",
@@ -13,12 +16,15 @@
     "babel-register": "^6.24.1",
     "babelify": "^7.3.0",
     "browserify": "^14.0.0",
+    "chromedriver": "^2.33.2",
     "eslint": "^4.11.0",
     "gulp": "^3.9.1",
     "gulp-connect": "^5.0.0",
     "gulp-sourcemaps": "^2.4.1",
     "he": "^1.1.1",
     "mocha": "^3.4.1",
+    "q": "^1.5.1",
+    "selenium-webdriver": "^3.6.0",
     "sinon": "^4.1.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
