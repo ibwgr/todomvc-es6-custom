@@ -8,10 +8,12 @@ export default class Controller{
             [viewEvents.onAddItem]: this.addItem.bind(this),
             [viewEvents.onRemoveItem]: this.removeItem.bind(this)
         })
+    }
 
-        store.all()
-        .then(view.renderItems.bind(view))
-        .catch(view.renderError.bind(view))
+    loadAndRender(){
+        this.store.all()
+        .then(this.view.renderItems.bind(this.view))
+        .catch(this.view.renderError.bind(this.view))
     }
 
     addItem(item){
@@ -41,6 +43,6 @@ export default class Controller{
             hasErrors: msgs.some(m=>m.level === 'error'),
             errors: msgs.filter(m=>m.level === 'error'),
             msgs
-        } 
+        }
     }
 }
