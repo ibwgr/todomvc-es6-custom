@@ -5,7 +5,7 @@
   "author": "Ueli Kunz",
   "license": "MIT",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --require babel-register src/test/**.js"
+    "test": "./node_modules/.bin/mocha --require babel-register src/test/unit/**.js"
   },
   "devDependencies": {
     "babel-polyfill": "^6.23.0",
@@ -19,6 +19,7 @@
     "gulp-sourcemaps": "^2.4.1",
     "he": "^1.1.1",
     "mocha": "^3.4.1",
+    "sinon": "^4.1.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.9.0",

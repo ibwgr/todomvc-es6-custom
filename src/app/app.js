@@ -9,5 +9,5 @@ const store = new Store('todo-app-storage')
 const ctrl = new Controller(view, viewEvents, store)
 
 window.addEventListener('load', () => {
-    //view.render()
+    ctrl.loadAndRender()
 })
