@@ -1,25 +1,19 @@
-const webdriver = require('selenium-webdriver');
-const $q = require('q');
-const {setupDriver} = require('./selenium.helper');
+import init from './selenium.helper'
+import {until} from 'selenium-webdriver'
 
-const {By, until} = webdriver;
-const driver = setupDriver({
-  selenium:{
-    hub: 'http://localhost:4444/wd/hub'
-  }
-});
+const {driver, async_it, config} = init()
+
+import Index from './index.po'
+const page = new Index(driver, config.target)
 
 describe('E2E Index', function() {
 
-  it('should show textfield', function (done) {
-    driver.navigate().to('http://localhost:8008/build');
-
-    driver.wait(until.elementLocated(By.css('.new-todo')));
-
-    driver.wait($q.resolve()).then(done);
-  });
+  async_it('should show textfield', function(){
+    page.gotoIndex();
+    driver.wait(until.elementLocated(page.newTodoSelector()))
+  })
 
   afterEach(function(){
-    driver.quit();
-  });
-});
+    driver.quit()
+  })
+})

@@ -8,5 +8,5 @@ before_script:
   - npm run start &
   - ./node_modules/.bin/chromedriver --url-base=wd/hub --port=4444 &
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:8008 &
-  - sleep 8
+  - sleep 8 # give background tasks some time to start up
 
