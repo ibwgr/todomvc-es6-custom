@@ -5,8 +5,8 @@ node_js:
 addons:
   chrome: stable
 before_script:
-  - sudo chown -R travis ./travis/*.sh
-  - sudo chmod +x ./travis/*.sh
+  - sudo chown -R travis ./travis/todomvc-server.sh
+  - sudo chmod +x ./travis/todomvc-server.sh
   - ./travis/todomvc-server.sh
 
   # build javascript application and serve it on localhost:8008
