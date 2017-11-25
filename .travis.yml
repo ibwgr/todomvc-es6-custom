@@ -5,8 +5,12 @@ node_js:
 addons:
   chrome: stable
 before_script:
+  # build javascript application and serve it on localhost:8008
   - npm run start &
+  # start chromedriver and listen at 4444 for incoming commands
   - ./node_modules/.bin/chromedriver --url-base=wd/hub --port=4444 &
+  # start headless chrome browser, directly open web application home page
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:8008 &
-  - sleep 8 # give background tasks some time to start up
+  # give background tasks some time to start up
+  - sleep 8
 

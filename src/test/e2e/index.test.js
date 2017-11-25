@@ -6,7 +6,7 @@ const {driver, async_it, config} = init()
 import Index from './index.po'
 const page = new Index(driver, config.target)
 
-describe('E2E Index', function() {
+describe('Index', function() {
 
   async_it('should show textfield', function(){
     page.gotoIndex();
