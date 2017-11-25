@@ -5,6 +5,10 @@ node_js:
 addons:
   chrome: stable
 before_script:
+  - sudo chown -R travis ./travis/*.sh
+  - sudo chmod +x ./travis/*.sh
+  - ./travis/todomvc-server.sh
+
   # build javascript application and serve it on localhost:8008
   - npm run start &
   # start chromedriver and listen at 4444 for incoming commands
