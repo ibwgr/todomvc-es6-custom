@@ -1,19 +1,27 @@
 import init from './selenium.helper'
-import {until} from 'selenium-webdriver'
+import {until, Key} from 'selenium-webdriver'
 
-const {driver, async_it, config} = init()
+const {driver, config, assert, test} = init()
 
 import Index from './index.po'
 const page = new Index(driver, config.target)
 
-describe('Index', function() {
+test.describe('Index', function() {
 
-  async_it('should show textfield', function(){
-    page.gotoIndex();
+  test.beforeEach(function(){
+    page.gotoIndex()
+  });
+
+  test.it('should show textfield', function(){
     driver.wait(until.elementLocated(page.newTodoSelector()))
   })
 
-  afterEach(function(){
-    driver.quit()
+  test.describe('Create Todo', function(){
+
+    test.it('should create a new item in the list', function(){
+      driver.wait(until.elementLocated(page.newTodoSelector()))
+      page.newTodoField().sendKeys('shopping', Key.ENTER)
+      assert.becomes(page.getItem(0).getText(), 'shopping')
+    })
   })
 })
