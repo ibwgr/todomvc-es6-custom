@@ -1,8 +1,13 @@
 import webdriver from 'selenium-webdriver'
 import chrome from 'selenium-webdriver/chrome'
 import chromedriver from 'chromedriver'
-import $q from 'q'
+import test from 'selenium-webdriver/testing'
 import default_config from './config.js'
+import chai from 'chai'
+import chaiAsPromised from 'chai-as-promised'
+
+chai.use(chaiAsPromised)
+const {assert} = chai;
 
 const setupDriver = function(config){
   // dynamically get path of chrome binary
@@ -15,20 +20,12 @@ const setupDriver = function(config){
     .build();
 };
 
-function async_it(driver, spec, runner){
-  it(spec, function(done){
-    runner.call(this)
-    driver.wait($q.resolve()).then(done)
-  })
-}
-
 export default function init(config = default_config){
   let driver = setupDriver(config)
   return {
-    async_it: function(...args){
-      async_it(driver, ...args)
-    },
     driver,
-    config
+    config,
+    assert,
+    test
   }
 }

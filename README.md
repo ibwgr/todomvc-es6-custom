@@ -12,6 +12,12 @@
 - Fix Server JSON Response
 - Build Client Error Handling
 
+### Module
+
+- mocha - test runner & test suite supporting BDD (describe, it)
+- assert - assertion library für unit tests (nicht promise fähig)
+- sinon - mocking / spying in unit tests
+- chai - assertion library für e2e tests (promise fähig)
 
 ### Usage
 Build & serve web application: `./node_modules/.bin/gulp`

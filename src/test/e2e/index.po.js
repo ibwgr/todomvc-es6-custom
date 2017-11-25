@@ -14,4 +14,12 @@ export default class Index{
   newTodoSelector(){
     return By.css('.new-todo')
   }
+
+  newTodoField(){
+    return this.driver.findElement(this.newTodoSelector())
+  }
+
+  getItem(idx){
+    return this.driver.findElement(By.css(`.todo-list > li:nth-child(${idx+1})`))
+  }
 }
