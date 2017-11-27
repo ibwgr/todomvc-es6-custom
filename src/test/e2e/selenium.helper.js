@@ -9,6 +9,10 @@ import chaiAsPromised from 'chai-as-promised'
 chai.use(chaiAsPromised)
 const {assert} = chai;
 
+/*
+* Documentation at https://seleniumhq.github.io/selenium/docs/api/javascript/index.html
+* */
+
 const setupDriver = function(config){
   // dynamically get path of chrome binary
   // see https://stackoverflow.com/questions/36410283/node-js-complaining-that-the-chromedriver-could-not-be-found-on-the-current-pat
