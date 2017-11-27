@@ -1,6 +1,6 @@
 'use strict'
 
-import assert from 'assert'
+import {assert} from 'chai'
 import {spy} from 'sinon'
 import Controller from '../../app/controller'
 import Store from '../../app/store.remote'
@@ -21,7 +21,6 @@ describe('Controller', function() {
       let val = ctrl.makeValidatorObject([{level:'error'}, {level:'info'}])
 
       assert.equal(true, val.hasErrors)
-
 
       val = ctrl.makeValidatorObject([, {level:'info'}])
 

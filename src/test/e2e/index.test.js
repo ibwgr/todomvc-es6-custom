@@ -10,7 +10,7 @@ test.describe('Index', function() {
 
   test.beforeEach(function(){
     page.gotoIndex()
-  });
+  })
 
   test.it('should show textfield', function(){
     driver.wait(until.elementLocated(page.newTodoSelector()))
