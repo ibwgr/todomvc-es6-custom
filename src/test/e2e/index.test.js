@@ -28,6 +28,6 @@ test.describe('Index', function() {
   })
 
   after(function(){
-    driver.quit();
+    driver.quit()
   })
 })
