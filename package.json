@@ -14,7 +14,7 @@
   "devDependencies": {
     "@babel/cli": "7.7.5",
     "@babel/core": "7.7.5",
-    "@babel/polyfill": "^7.7.0",
+    "@babel/polyfill": "7.7.0",
     "@babel/preset-env": "7.7.6",
     "@babel/register": "7.7.4",
     "chai": "4.2.0",
@@ -23,11 +23,12 @@
     "eslint": "6.7.2",
     "he": "1.2.0",
     "mocha": "6.2.2",
-    "selenium-standalone": "^6.17.0",
+    "parcel": "1.12.4",
+    "selenium-standalone": "6.17.0",
     "selenium-webdriver": "3.6.0",
     "sinon": "7.5.0"
   },
   "dependencies": {
-    "todomvc-app-css": "^2.0.6"
+    "todomvc-app-css": "2.3.0"
   }
 }
