@@ -1,31 +1,35 @@
 'use strict'
-export default class Store{
-    constructor(name){
-        this.name = name
-        this.localStorage = window.localStorage
-        this._load()
-    }
 
-    _persist(){
-        this.localStorage.setItem(this.name, JSON.stringify(this.items))
-    }
+export default class Store {
+  constructor(name) {
+    this.name = name
+    this.localStorage = window.localStorage
+    this._load()
+  }
 
-    _load(){
-        this.items = JSON.parse(this.localStorage.getItem(this.name) || '[]')
-    }
+  _persist() {
+    return new Promise(resolve => {
+      this.localStorage.setItem(this.name, JSON.stringify(this.items))
+      resolve()
+    })
+  }
 
-    add(item){
-        this.items.push(item)
-        this._persist()
-    }
+  _load() {
+    this.items = JSON.parse(this.localStorage.getItem(this.name) || '[]')
+  }
 
-    remove(id){
-        let indexToRemove = this.items.findIndex(item=>item.id==id)
-        this.items.splice(indexToRemove, 1)
-        this._persist()
-    }
+  add(item) {
+    this.items.push(item)
+    return this._persist()
+  }
 
-    all(){
-        return this.items
-    }
+  remove(id) {
+    let indexToRemove = this.items.findIndex(item => item.id === id)
+    this.items.splice(indexToRemove, 1)
+    return this._persist()
+  }
+
+  all() {
+    return Promise.resolve(this.items)
+  }
 }
