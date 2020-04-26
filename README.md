@@ -3,31 +3,26 @@
 ### Install
 
 1. install npm (shipped with node. nvm recommended for node install)
-1. `npm i -g yarn`
-1. `yarn install`
+1. `npm install`
 1. install eslint plugin in intellij
-
-### Vorgehen Unterricht
-- Demonstrate Error Handling (self, aim with self)
-- Fix Server JSON Response
-- Build Client Error Handling
 
 ### Module
 - mocha – test runner & test suite supporting BDD (describe, it)
 - sinon – mocking / spying in unit tests
 - chai – assertion library für e2e tests (promise fähig)
+- parcel - bundler
 
 ### Usage
-Build & serve web application: `./node_modules/.bin/gulp`
+Build & serve web application: `npm run start`
 
 ### History
 
 **a9c8a4f**
-* toolchain with gulpfile, eslint, yarn
+* toolchain with parcel, eslint, npm
 * index.html with script and es6 imports
 
 **47a8975**
-* creating instance from class.
+* creating instance from class
 * template string
 * dom manipulation
 
@@ -35,8 +30,8 @@ Build & serve web application: `./node_modules/.bin/gulp`
 * event handler
 
 **a1301b2**
-* controller. 
-* handles events from view.
+* controller.
+* handles events from view
 * "private" methods
 * higher order functions
 
@@ -44,7 +39,7 @@ Build & serve web application: `./node_modules/.bin/gulp`
 * real private methods with es6 symbol
 
 **46a1658**
-* export events. 
+* export events
 * import as, multi export
 
 **f9d9b4d**
@@ -55,9 +50,3 @@ Build & serve web application: `./node_modules/.bin/gulp`
 **4fb5801**
 * local storage
 * JSON
-
-### New Web Project
-file > new project > web static
-
-file > new > src/index.html
-
