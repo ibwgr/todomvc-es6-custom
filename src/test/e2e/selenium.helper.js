@@ -12,7 +12,7 @@ const setupDriver = function () {
 	webdriver.promise.USE_PROMISE_MANAGER = false
 
 	const options = new chrome.Options().addArguments(
-		//'headless',
+		process.env.CI ? 'headless' : '',
 		'disable-gpu',
 		'ignore-certificate-errors',
 		'no-sandbox',
