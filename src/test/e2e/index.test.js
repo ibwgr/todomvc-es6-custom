@@ -1,7 +1,7 @@
-import init from './selenium.helper'
 import {until, Key} from 'selenium-webdriver'
 import {describe, it, beforeEach, after} from 'mocha'
 
+import init from './selenium.helper'
 const {driver, config, assert} = init()
 
 import Index from './index.po'
