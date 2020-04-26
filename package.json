@@ -19,12 +19,11 @@
     "@babel/register": "7.7.4",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
-    "chromedriver": "2.46.0",
+    "chromedriver": "81.0.0",
     "eslint": "6.7.2",
     "he": "1.2.0",
     "mocha": "6.2.2",
     "parcel": "1.12.4",
-    "selenium-standalone": "6.17.0",
     "selenium-webdriver": "3.6.0",
     "sinon": "7.5.0"
   },

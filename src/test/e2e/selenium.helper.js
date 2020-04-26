@@ -1,31 +1,36 @@
+require('chromedriver');
 import webdriver from 'selenium-webdriver'
 import chrome from 'selenium-webdriver/chrome'
-import default_config from './config.js'
 import chai from 'chai'
+import chaiAsPromised from 'chai-as-promised'
+chai.use(chaiAsPromised)
+const {assert} = chai
 
-const {assert} = chai;
+import config from './config.js'
 
-/*
-* Documentation at https://seleniumhq.github.io/selenium/docs/api/javascript/index.html
-* */
+const setupDriver = function () {
+	webdriver.promise.USE_PROMISE_MANAGER = false
 
-const setupDriver = function(config){
-  webdriver.promise.USE_PROMISE_MANAGER = false
-  const options = new chrome.Options()
-    // .addArguments('headless')
+	const options = new chrome.Options().addArguments(
+		//'headless',
+		'disable-gpu',
+		'ignore-certificate-errors',
+		'no-sandbox',
+		'window-size=1420,800',
+		'disable-extensions',
+		'disable-dev-shm-usage'
+	);
 
-  return new webdriver.Builder()
-    .setChromeOptions(options)
-    .forBrowser('chrome')
-    .usingServer(config.selenium.hub)
-    .build();
-};
+	return new webdriver.Builder()
+		.setChromeOptions(options)
+		.forBrowser('chrome')
+		.build();
+}
 
-export default function init(config = default_config){
-  let driver = setupDriver(config)
+export default function init(){
   return {
+    assert,
     config,
-    driver,
-    assert
+    driver: setupDriver()
   }
 }

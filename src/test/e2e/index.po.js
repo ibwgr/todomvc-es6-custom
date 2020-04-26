@@ -8,7 +8,7 @@ export default class Index{
   }
 
   gotoIndex(){
-    this.driver.navigate().to(this.url)
+    return this.driver.navigate().to(this.url)
   }
 
   newTodoSelector(){
