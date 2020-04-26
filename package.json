@@ -1,6 +1,6 @@
 {
   "name": "todomvc-es6-custom",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Simple TodoMVC Application with vanilla ES6",
   "author": "Ueli Kunz <kunz@ideadapt.net>",
   "license": "MIT",
@@ -9,7 +9,8 @@
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "npx mocha ${DIR:-src}/test/unit/**.js",
     "hub": "npx selenium-standalone start",
-    "test:e2e": "npx mocha ${DIR:-src}/test/e2e/*.test.js --timeout 5000"
+    "test:e2e": "npx mocha ${DIR:-src}/test/e2e/*.test.js --timeout 5000",
+    "dist": "NODE_ENV=production rm -rf dist && npx parcel build ${DIR:-src}/app/index.html"
   },
   "devDependencies": {
     "@babel/cli": "7.7.5",
