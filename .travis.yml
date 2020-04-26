@@ -5,14 +5,13 @@ node_js:
 addons:
   chrome: stable
 before_script:
+  # download javascript server application and run it
   - sudo chown -R travis ./travis/todomvc-server.sh
   - sudo chmod +x ./travis/todomvc-server.sh
   - ./travis/todomvc-server.sh
 
-  # build javascript application and serve it
+  # build javascript client application and serve it
   - npm run start &
-  # start headless chrome browser, directly open web application home page
-  # - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:1234 &
   # give background tasks some time to start up
   - sleep 8
   # travis now automatically runs `npm run test`
