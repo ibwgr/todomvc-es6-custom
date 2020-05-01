@@ -5,12 +5,12 @@
   "author": "Ueli Kunz <kunz@ideadapt.net>",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development rm -rf .cache && npx parcel ${DIR:-src}/app/index.html",
+    "start": "rm -rf .cache && npx parcel src/app/index.html",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:unit": "npx mocha ${DIR:-src}/test/unit/**.js",
+    "test:unit": "npx mocha src/test/unit/**.js",
     "hub": "npx selenium-standalone start",
-    "test:e2e": "npx mocha ${DIR:-src}/test/e2e/*.test.js --timeout 5000",
-    "dist": "NODE_ENV=production rm -rf dist && npx parcel build ${DIR:-src}/app/index.html"
+    "test:e2e": "npx mocha src/test/e2e/*.test.js --timeout 5000",
+    "dist": "NODE_ENV=production rm -rf dist && npx parcel build src/app/index.html"
   },
   "devDependencies": {
     "@babel/cli": "7.7.5",
