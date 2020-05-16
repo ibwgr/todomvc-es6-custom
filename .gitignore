@@ -181,3 +181,4 @@ GitHub.sublime-settings
 
 mochawesome-report/
 /.idea/checkstyle-idea.xml
+/.idea/sonarlint
