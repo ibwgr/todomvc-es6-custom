@@ -5,7 +5,8 @@
   "author": "Ueli Kunz <kunz@ideadapt.net>",
   "license": "MIT",
   "scripts": {
-    "start": "rm -rf .cache && npx parcel src/app/index.html",
+    "start": "cd src/app && http-server --port 1234",
+    "start-parcel": "rm -rf .cache && npx parcel src/app/index.html",
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "npx mocha src/test/unit/**.js",
     "hub": "npx selenium-standalone start",
