@@ -43,7 +43,7 @@ class View {
         })
 
         this.$newTodo.addEventListener('change', ({target})=>{
-            let validator = this[onAddItem]({id: Date.now(), title: target.value.trim()})
+            let validator = this[onAddItem]({id: Date.now(), description: target.value.trim()})
             this.renderMsgs(this.$newTodo, validator)
 
             if(!validator.hasErrors){
@@ -117,7 +117,7 @@ class View {
 
     renderItem(item){
         return `<li data-id="${he.encode(item.id.toString())}">
-            <label>${he.encode(item.title)}</label>
+            <label>${he.encode(item.description)}</label>
             <button class="destroy"></button>
         </li>`;
     }

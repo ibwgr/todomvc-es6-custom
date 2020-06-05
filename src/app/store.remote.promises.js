@@ -8,6 +8,7 @@
 export default class Store{
     constructor(name){
         this.name = name
+        this.serverUrl = 'http://localhost:3100'
     }
 
     add(item){
@@ -15,7 +16,7 @@ export default class Store{
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         })
-        return fetch('http://localhost:3100/items', {
+        return fetch(`${this.serverUrl}/items`, {
             method: 'POST',
             headers: headers,
             credentials: 'include',
@@ -34,7 +35,7 @@ export default class Store{
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         })
-        return fetch(`http://localhost:3100/items/${encodeURIComponent(id.toString())}/`, {
+        return fetch(`${this.serverUrl}/items/${encodeURIComponent(id.toString())}/`, {
             method: 'DELETE',
             headers: headers,
             credentials: 'include',
@@ -52,7 +53,7 @@ export default class Store{
         let headers = new Headers({
             'Accept': 'application/json'
         })
-        return fetch('http://localhost:3100/items', {
+        return fetch(`${this.serverUrl}/items`, {
             method: 'GET',
             headers: headers,
             credentials: 'include'
