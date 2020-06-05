@@ -13,7 +13,7 @@
 - parcel - bundler
 
 ### Usage
-Build & serve web application: `npm run start`
+Build & serve web application: `npm run start-parcel`
 
 ### History
 

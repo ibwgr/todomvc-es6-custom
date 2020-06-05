@@ -1,5 +1,10 @@
-'use strict'
-
+/**
+ * Dieser Store funktioniert mit dem NodeJS Express Server: https://github.com/ibwgr/todomvc-server
+ * Der Express Server beherscht einfaches Session Management (Login Funktionalität),
+ * deshalb wird mit "credentials: include" gearbeitet.
+ *
+ * Dieser Store verwendet Promises (nicht async await)
+ */
 export default class Store{
     constructor(name){
         this.name = name

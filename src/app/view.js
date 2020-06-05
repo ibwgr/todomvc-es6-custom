@@ -1,4 +1,3 @@
-'use strict'
 import SiblingIterator from './lib/sibling-iterator.js'
 import he from 'he'
 
@@ -13,7 +12,6 @@ const events = {
 }
 
 class View {
-
     constructor(rootSelector){
         this.rootSelector = rootSelector
         this.$newTodo = this[getElement]('.new-todo')
@@ -114,7 +112,7 @@ class View {
     }
 
     renderItems(items){
-        this.$todoList.innerHTML = items.map(this.renderItem).join('')
+        this.$todoList.innerHTML = items.map(item => this.renderItem(item)).join('')
     }
 
     renderItem(item){
