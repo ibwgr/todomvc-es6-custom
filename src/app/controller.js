@@ -34,7 +34,7 @@ export default class Controller{
 
     validateNewItem(item){
         let msgs = []
-        if(item.title.trim().length === 0){
+        if(item.description.trim().length === 0){
             msgs.push({text: 'Du musst schon was tun!', level: 'error'})
         }
         return msgs
