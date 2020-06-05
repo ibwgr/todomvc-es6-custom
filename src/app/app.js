@@ -1,8 +1,6 @@
-'use strict'
-
-import Store from './store.local'
-import {View, events as viewEvents} from './view'
-import Controller from './controller'
+import Store from './store.local.js' // oder store.remote.await, store.remote.promises
+import {View, events as viewEvents} from './view.js'
+import Controller from './controller.js'
 
 const view = new View('#the-app')
 const store = new Store('todo-app-storage')

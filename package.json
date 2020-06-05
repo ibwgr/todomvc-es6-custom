@@ -5,14 +5,15 @@
   "author": "Ueli Kunz <kunz@ideadapt.net>",
   "license": "MIT",
   "scripts": {
-    "start": "cd src/app && http-server --port 1234",
+    "start": "./node_modules/.bin/http-server src/app --port 1234",
     "start-parcel": "rm -rf .cache && npx parcel src/app/index.html",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:unit": "npx mocha src/test/unit/**.js",
-    "hub": "npx selenium-standalone start",
-    "test:e2e": "npx mocha src/test/e2e/*.test.js --timeout 5000",
-    "dist": "NODE_ENV=production rm -rf dist && npx parcel build src/app/index.html"
+    "test:unit": "./node_modules/.bin/mocha src/test/unit/**.js",
+    "hub": "./node_modules/.bin/selenium-standalone start",
+    "test:e2e": "./node_modules/.bin/mocha src/test/e2e/*.test.js --timeout 5000",
+    "dist": "NODE_ENV=production rm -rf dist && ./node_modules/.bin/parcel build src/app/index.html"
   },
+  "browserslist": ["last 2 chrome versions"],
   "devDependencies": {
     "@babel/cli": "7.7.5",
     "@babel/core": "7.7.5",
@@ -24,6 +25,7 @@
     "chromedriver": "81.0.0",
     "eslint": "6.7.2",
     "he": "1.2.0",
+    "http-server": "^0.12.3",
     "mocha": "^7.1.2",
     "parcel": "1.12.4",
     "selenium-webdriver": "3.6.0",
