@@ -1,4 +1,4 @@
-import {assert} from 'chai'
+import assert from 'assert'
 import {spy} from 'sinon'
 import Controller from '../../app/controller'
 import Store from '../../app/store.remote.promises'
@@ -17,7 +17,6 @@ describe('Controller', function() {
       const ctrl = new Controller(this.view, events, this.store)
 
       let val = ctrl.makeValidatorObject([{level:'error'}, {level:'info'}])
-
       assert.equal(val.hasErrors, true)
 
       val = ctrl.makeValidatorObject([, {level:'info'}])
