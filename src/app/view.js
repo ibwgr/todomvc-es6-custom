@@ -25,26 +25,26 @@ class View {
         this[bindEvents]()
     }
 
-    [getElement](selector){
-        return document.querySelector(this.rootSelector + ' ' + selector)
-    }
+  [getElement](selector) {
+    return document.querySelector(this.rootSelector + ' ' + selector)
+  }
 
-    [onAddItem](item){
-        return this.eventHandlers[events.onAddItem](item)
-    }
+  [onAddItem](item) {
+    return this.eventHandlers[events.onAddItem](item)
+  }
 
-    [onRemoveItem](item){
-        return this.eventHandlers[events.onRemoveItem](item)
-    }
+  [onRemoveItem](id) {
+    return this.eventHandlers[events.onRemoveItem](id)
+  }
 
-    [bindEvents](){
-        document.addEventListener('input', ({target})=>{
-            this.resetMsgs(target)
-        })
+  [bindEvents]() {
+    document.addEventListener('input', ({target}) => {
+      this.resetMsgs(target)
+    })
 
-        this.$newTodo.addEventListener('change', ({target})=>{
-            let validator = this[onAddItem]({id: Date.now(), description: target.value.trim()})
-            this.renderMsgs(this.$newTodo, validator)
+    this.$newTodo.addEventListener('change', ({target}) => {
+      let validator = this[onAddItem]({id: Date.now(), description: target.value.trim()})
+      this.renderMsgs(this.$newTodo, validator)
 
             if(!validator.hasErrors){
                 this.$newTodo.value = ''
