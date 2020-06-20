@@ -28,8 +28,22 @@ export default class Store{
         }
     }
 
-    async remove(id){
-      throw new Error('Store.remove is not implemented yet!')
+    async remove(id) {
+      let headers = new Headers({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+      const resp = await fetch(this.serverUrl + '/todo/items/' + id, {
+        method: 'DELETE',
+        headers,
+        credentials: 'include'
+      })
+
+      if (resp.ok === true) {
+        return resp.json()
+      } else {
+        throw resp
+      }
     }
 
     async all(){
