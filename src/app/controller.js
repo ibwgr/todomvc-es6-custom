@@ -21,7 +21,8 @@ export default class Controller{
     async addItem(item) {
       let val = this.makeValidatorObject(this.validateNewItem(item));
       if (!val.hasErrors) {
-        await this.store.add(item)
+        const {id: newId} = await this.store.add(item)
+        item.id = newId
         this.view.add(item)
       }
       return val

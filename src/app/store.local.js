@@ -7,6 +7,7 @@
  */
 export default class Store {
   constructor(name) {
+    this.id = 0
     this.name = name
     this.localStorage = window.localStorage
     this._load()
@@ -24,8 +25,11 @@ export default class Store {
   }
 
   add(item) {
+    item.id = this.id++
     this.items.push(item)
-    return this._persist()
+    return this._persist().then(() => {
+      return {id: item.id}
+    })
   }
 
   remove(id) {
