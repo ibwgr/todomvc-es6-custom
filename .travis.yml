@@ -3,6 +3,9 @@ language: node_js
 node_js:
   - "10"
 addons:
+  apt:
+    packages:
+      - dpkg
   chrome: stable
 before_script:
   # download javascript server application and run it
