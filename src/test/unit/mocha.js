@@ -10,15 +10,15 @@ describe('Array', function() {
     })
 
     describe('the value is first element', function () {
-      it('should return 0 when ', function() {
-        assert.equal([1,2,3].indexOf(1), 0);
-      });
+      it('should return 0', function () {
+        assert.equal([1, 2, 3].indexOf(1), 0)
+      })
     })
 
     describe('the value is last element', function () {
-      it('should return length-1 when ', function() {
-        assert.equal([1,2,3].indexOf(1), 3);
-      });
+      it('should return length-1', function () {
+        assert.equal([2, 3, 1].indexOf(1), 2)
+      })
     })
   });
 });
