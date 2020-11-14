@@ -12,8 +12,14 @@
 - chai – assertion library für e2e tests (promise fähig)
 - parcel - bundler
 
-### Usage
+### Development
 Build & serve web application: `npm run start-parcel`
+
+### Test
+`npm run test:unit`
+
+First start frontend `npm run start` \
+Then run e2e test against it `npm run test:e2e`
 
 ### History
 
