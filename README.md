@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/ibwgr/todomvc-es6-custom.svg?branch=master)](https://travis-ci.org/ibwgr/todomvc-es6-custom)
 
 ### Install
-
 1. install npm (shipped with node. nvm recommended for node install)
 1. `npm install`
 1. install eslint plugin in intellij
