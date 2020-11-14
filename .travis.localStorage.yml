@@ -1,0 +1,13 @@
+dist: trusty
+language: node_js
+node_js:
+  - "10"
+addons:
+  chrome: stable
+before_script:
+  # build javascript client application and serve it
+  - npm run start:ci &
+  # give background tasks some time to start up
+  - sleep 8
+  # travis now automatically runs `npm run test`
+
