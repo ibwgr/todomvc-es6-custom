@@ -21,7 +21,6 @@ First start frontend `npm run start` \
 Then run e2e test against it `npm run test:e2e`
 
 ### History
-
 **a9c8a4f**
 * toolchain with parcel, eslint, npm
 * index.html with script and es6 imports
