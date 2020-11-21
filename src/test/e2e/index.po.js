@@ -19,11 +19,11 @@ export default class Index{
     return this.driver.findElement(this.newTodoSelector())
   }
 
-  getItemSelector(idx){
-    return By.css(`.todo-list > li:nth-child(${idx+1})`)
+  getLastItemSelector(){
+    return By.css(`.todo-list > li:last-child`)
   }
 
-  getItem(idx){
-    return this.driver.findElement(this.getItemSelector(idx))
+  getLastItem(){
+    return this.driver.findElement(this.getLastItemSelector())
   }
 }

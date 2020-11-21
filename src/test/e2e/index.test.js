@@ -27,8 +27,8 @@ describe('Index', () => {
       await driver.wait(until.elementLocated(page.newTodoSelector()))
       await page.newTodoField().sendKeys('shopping', Key.ENTER)
 
-      await driver.wait(until.elementLocated(page.getItemSelector(0)))
-      await assert.becomes(page.getItem(0).getText(), 'shopping')
+      await driver.wait(until.elementLocated(page.getLastItemSelector()))
+      await assert.becomes(page.getLastItem().getText(), 'shopping')
     })
   })
 })
