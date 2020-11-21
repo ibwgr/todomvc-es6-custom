@@ -8,11 +8,6 @@ addons:
       - dpkg
   chrome: stable
 before_script:
-  # download javascript server application and run it
-  - sudo chown -R travis ./travis/todomvc-server.sh
-  - sudo chmod +x ./travis/todomvc-server.sh
-  - ./travis/todomvc-server.sh
-
   # build javascript client application and serve it
   - npm run start:ci &
   # give background tasks some time to start up
