@@ -1,8 +1,14 @@
-'use strict'
-
+/**
+ * Dieser Store funktioniert mit dem NodeJS Express Server: https://github.com/ibwgr/todomvc-server
+ * Der Express Server beherscht einfaches Session Management (Login Funktionalität),
+ * deshalb wird mit "credentials: include" gearbeitet.
+ *
+ * Dieser Store verwendet Promises (nicht async await)
+ */
 export default class Store{
     constructor(name){
         this.name = name
+        this.serverUrl = 'http://localhost:3100'
     }
 
     add(item){
@@ -10,7 +16,7 @@ export default class Store{
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         })
-        return fetch('http://localhost:3100/items', {
+        return fetch(`${this.serverUrl}/items`, {
             method: 'POST',
             headers: headers,
             credentials: 'include',
@@ -29,7 +35,7 @@ export default class Store{
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         })
-        return fetch(`http://localhost:3100/items/${encodeURIComponent(id.toString())}/`, {
+        return fetch(`${this.serverUrl}/items/${encodeURIComponent(id.toString())}/`, {
             method: 'DELETE',
             headers: headers,
             credentials: 'include',
@@ -47,7 +53,7 @@ export default class Store{
         let headers = new Headers({
             'Accept': 'application/json'
         })
-        return fetch('http://localhost:3100/items', {
+        return fetch(`${this.serverUrl}/items`, {
             method: 'GET',
             headers: headers,
             credentials: 'include'

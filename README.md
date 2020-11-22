@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/ibwgr/todomvc-es6-custom.svg?branch=master)](https://travis-ci.org/ibwgr/todomvc-es6-custom)
 
 ### Install
-
 1. install npm (shipped with node. nvm recommended for node install)
 1. `npm install`
 1. install eslint plugin in intellij
@@ -12,11 +11,16 @@
 - chai – assertion library für e2e tests (promise fähig)
 - parcel - bundler
 
-### Usage
-Build & serve web application: `npm run start`
+### Development
+Build & serve web application: `npm run start-parcel`
+
+### Test
+`npm run test:unit`
+
+First start frontend `npm run start` \
+Then run e2e test against it `npm run test:e2e`
 
 ### History
-
 **a9c8a4f**
 * toolchain with parcel, eslint, npm
 * index.html with script and es6 imports

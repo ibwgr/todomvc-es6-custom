@@ -1,38 +1,41 @@
-'use strict'
 export default class Controller{
     constructor(view, viewEvents, store){
         this.view = view
         this.store = store
 
         view.registerEventHandlers({
-            [viewEvents.onAddItem]: this.addItem.bind(this),
-            [viewEvents.onRemoveItem]: this.removeItem.bind(this)
+            [viewEvents.onAddItem]: item => this.addItem(item),
+            [viewEvents.onRemoveItem]: item => this.removeItem(item)
         })
     }
 
-    loadAndRender(){
-        this.store.all()
-        .then(this.view.renderItems.bind(this.view))
-        .catch(this.view.renderError.bind(this.view))
+    async loadAndRender(){
+      try{
+        const items = await this.store.all()
+        this.view.renderItems(items)
+      } catch (e) {
+        this.view.renderError(e)
+      }
     }
 
-    addItem(item){
-        let val = this.makeValidatorObject(this.validateNewItem(item));
-        if(!val.hasErrors){
-            this.store.add(item)
-                .then(this.view.add.bind(this.view, item))
-        }
-        return val
+    async addItem(item) {
+      let val = this.makeValidatorObject(this.validateNewItem(item));
+      if (!val.hasErrors) {
+        const {id: newId} = await this.store.add(item)
+        item.id = newId
+        this.view.add(item)
+      }
+      return val
     }
 
-    removeItem(id){
-        this.store.remove(id)
-            .then(this.view.remove.bind(this.view, id))
+    async removeItem(id) {
+      await this.store.remove(id)
+      this.view.remove(id)
     }
 
     validateNewItem(item){
         let msgs = []
-        if(item.title.trim().length === 0){
+        if(item.description.trim().length === 0){
             msgs.push({text: 'Du musst schon was tun!', level: 'error'})
         }
         return msgs

@@ -5,13 +5,18 @@
   "author": "Ueli Kunz <kunz@ideadapt.net>",
   "license": "MIT",
   "scripts": {
-    "start": "rm -rf .cache && npx parcel src/app/index.html",
+    "start": "./node_modules/.bin/http-server src/app --port 1234",
+    "start:ci": "npm run dist && ./node_modules/.bin/http-server dist --port 1234",
+    "start-parcel": "rm -rf .cache && npx parcel src/app/index.html",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:unit": "npx mocha src/test/unit/**.js",
-    "hub": "npx selenium-standalone start",
-    "test:e2e": "npx mocha src/test/e2e/*.test.js --timeout 5000",
-    "dist": "NODE_ENV=production rm -rf dist && npx parcel build src/app/index.html"
+    "test:unit": "./node_modules/.bin/mocha src/test/unit/**.js",
+    "hub": "./node_modules/.bin/selenium-standalone start",
+    "test:e2e": "./node_modules/.bin/mocha src/test/e2e/*.test.js --timeout 5000",
+    "dist": "NODE_ENV=production rm -rf dist && ./node_modules/.bin/parcel build src/app/index.html"
   },
+  "browserslist": [
+    "last 2 chrome versions"
+  ],
   "devDependencies": {
     "@babel/cli": "7.7.5",
     "@babel/core": "7.7.5",
@@ -20,10 +25,11 @@
     "@babel/register": "7.7.4",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
-    "chromedriver": "81.0.0",
+    "chromedriver": "86.0.0",
     "eslint": "6.7.2",
     "he": "1.2.0",
-    "mocha": "^7.1.2",
+    "http-server": "^0.12.3",
+    "mocha": "^7.2.0",
     "parcel": "1.12.4",
     "selenium-webdriver": "3.6.0",
     "sinon": "7.5.0"

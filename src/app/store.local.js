@@ -1,7 +1,13 @@
-'use strict'
-
+/**
+ * Dieser Store funktioniert mit LocalStorage.
+ *
+ * Dieser Store verwendet Promises (nicht async await),
+ * damit die Methoden add, remove, all die gleiche Signatur haben wie die entsprechenden Methoden
+ * von store.remote.await und store.remote.promsies
+ */
 export default class Store {
   constructor(name) {
+    this.id = 0
     this.name = name
     this.localStorage = window.localStorage
     this._load()
@@ -19,8 +25,11 @@ export default class Store {
   }
 
   add(item) {
+    item.id = this.id++
     this.items.push(item)
-    return this._persist()
+    return this._persist().then(() => {
+      return {id: item.id}
+    })
   }
 
   remove(id) {

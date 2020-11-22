@@ -1,10 +1,8 @@
-'use strict'
-
-import {assert} from 'chai'
+import assert from 'assert'
 import {spy} from 'sinon'
 import Controller from '../../app/controller'
-import Store from '../../app/store.remote'
-import {View, events} from '../../app/view'
+import Store from '../../app/store.remote.promises'
+import {events} from '../../app/view'
 
 describe('Controller', function() {
   describe('makeValidatorObject()', function() {
@@ -15,17 +13,15 @@ describe('Controller', function() {
       }
     })
 
-    it('should return hasErrors=true, only if any with level error', function() {
+    it('should return hasErrors=true, only if any message with level error', function() {
       const ctrl = new Controller(this.view, events, this.store)
 
       let val = ctrl.makeValidatorObject([{level:'error'}, {level:'info'}])
-
-      assert.equal(true, val.hasErrors)
+      assert.equal(val.hasErrors, true)
 
       val = ctrl.makeValidatorObject([, {level:'info'}])
 
-      assert.equal(false, val.hasErrors)
+      assert.equal(val.hasErrors, false)
     })
   })
 })
-

@@ -1,4 +1,3 @@
-'use strict'
 import SiblingIterator from './lib/sibling-iterator.js'
 import he from 'he'
 
@@ -13,7 +12,6 @@ const events = {
 }
 
 class View {
-
     constructor(rootSelector){
         this.rootSelector = rootSelector
         this.$newTodo = this[getElement]('.new-todo')
@@ -27,26 +25,26 @@ class View {
         this[bindEvents]()
     }
 
-    [getElement](selector){
-        return document.querySelector(this.rootSelector + ' ' + selector)
-    }
+  [getElement](selector) {
+    return document.querySelector(this.rootSelector + ' ' + selector)
+  }
 
-    [onAddItem](item){
-        return this.eventHandlers[events.onAddItem](item)
-    }
+  [onAddItem](item) {
+    return this.eventHandlers[events.onAddItem](item)
+  }
 
-    [onRemoveItem](item){
-        return this.eventHandlers[events.onRemoveItem](item)
-    }
+  [onRemoveItem](id) {
+    return this.eventHandlers[events.onRemoveItem](id)
+  }
 
-    [bindEvents](){
-        document.addEventListener('input', ({target})=>{
-            this.resetMsgs(target)
-        })
+  [bindEvents]() {
+    document.addEventListener('input', ({target}) => {
+      this.resetMsgs(target)
+    })
 
-        this.$newTodo.addEventListener('change', ({target})=>{
-            let validator = this[onAddItem]({id: Date.now(), title: target.value.trim()})
-            this.renderMsgs(this.$newTodo, validator)
+    this.$newTodo.addEventListener('change', ({target}) => {
+      let validator = this[onAddItem]({id: Date.now(), description: target.value.trim()})
+      this.renderMsgs(this.$newTodo, validator)
 
             if(!validator.hasErrors){
                 this.$newTodo.value = ''
@@ -114,12 +112,12 @@ class View {
     }
 
     renderItems(items){
-        this.$todoList.innerHTML = items.map(this.renderItem).join('')
+        this.$todoList.innerHTML = items.map(item => this.renderItem(item)).join('')
     }
 
     renderItem(item){
         return `<li data-id="${he.encode(item.id.toString())}">
-            <label>${he.encode(item.title)}</label>
+            <label>${he.encode(item.description)}</label>
             <button class="destroy"></button>
         </li>`;
     }
