@@ -112,7 +112,7 @@ class View {
     }
 
     renderItems(items){
-        this.$todoList.innerHTML = items.map(item => this.renderItem(item)).join('')
+        this.$todoList.innerHTML = items.reverse().map(item => this.renderItem(item)).join('')
     }
 
     renderItem(item){
