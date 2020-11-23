@@ -25,7 +25,6 @@ describe('Index', () => {
 
     it('should create a new item in the list', async () => {
       await driver.wait(until.elementLocated(page.newTodoSelector()))
-      debugger;
       await page.newTodoField().sendKeys('shopping', Key.ENTER)
 
       await driver.wait(until.elementLocated(page.getItemSelector(0)))
