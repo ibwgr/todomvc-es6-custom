@@ -6,7 +6,7 @@
  */
 export default class Store{
     constructor(name){
-        this.serverUrl = 'http://localhost:3100'
+      this.serverUrl = 'http://localhost:4567'
       this.name = name
     }
 

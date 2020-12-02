@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  client:
+    image: todomvc-client
+    ports:
+      - 1234:1234
+    networks:
+      - todonet
+
+  server:
+    image: todomvc-java-server
+    ports:
+      - 4567:4567
+    networks:
+      - todonet
+    environment:
+      # db is the docker-network internal DNS name of the db service
+      - JDBC_URI=jdbc:mysql://db:3306/todo
+
+  db:
+    image: mysql:8.0
+    # Uncomment to make database accessible from host system
+    #    ports:
+    #      - 3308:3306
+    networks:
+      - todonet
+    environment:
+      - MYSQL_USER=todo-web
+      - MYSQL_PASSWORD=1234
+      - MYSQL_ROOT_PASSWORD=12345678
+      - MYSQL_DATABASE=todo
+    volumes:
+      - ./db-data:/docker-entrypoint-initdb.d
+
+networks:
+  todonet:
+    driver: bridge

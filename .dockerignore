@@ -1,0 +1,6 @@
+node_modules
+dist
+mochawesome-report
+travis
+Dockerfile
+.dockerignore
