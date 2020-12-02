@@ -26,10 +26,10 @@ services:
     networks:
       - todonet
     environment:
-      - MYSQL_USER=todo-web
-      - MYSQL_PASSWORD=1234
-      - MYSQL_ROOT_PASSWORD=12345678
-      - MYSQL_DATABASE=todo
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
     volumes:
       - ./db-data:/docker-entrypoint-initdb.d
 
