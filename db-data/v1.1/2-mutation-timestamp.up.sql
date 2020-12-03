@@ -1,0 +1,2 @@
+ALTER TABLE todo.TodoItem
+    ADD COLUMN modified TIMESTAMP DEFAULT NOW();

@@ -21,8 +21,8 @@ services:
   db:
     image: mysql:8.0
     # Uncomment to make database accessible from host system
-    #    ports:
-    #      - 3308:3306
+    ports:
+      - 3308:3306
     networks:
       - todonet
     environment:
@@ -31,7 +31,7 @@ services:
       - MYSQL_ROOT_PASSWORD
       - MYSQL_DATABASE
     volumes:
-      - ./db-data:/docker-entrypoint-initdb.d
+      - ./db-data/v1:/docker-entrypoint-initdb.d
 
 networks:
   todonet:
