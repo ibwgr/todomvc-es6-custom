@@ -147,6 +147,8 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+*.pem
+
 # Windows shortcuts
 *.lnk
 ### SublimeText template
