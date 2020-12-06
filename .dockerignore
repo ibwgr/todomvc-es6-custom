@@ -4,3 +4,4 @@ mochawesome-report
 travis
 Dockerfile
 .dockerignore
+*.pem

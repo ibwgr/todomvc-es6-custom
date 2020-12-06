@@ -1,20 +1,23 @@
 # Base image
 FROM node:14
 
+MAINTAINER Ueli Kunz <kunz@ideadapt.net>
+
 # Set dir in container
 WORKDIR /usr/src
 
 # Coppy package files into container
 COPY package*.json ./
+COPY .env ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --production
 
 # Copy all files in Dockerfile dir to current workdir (/app) in container
 COPY --chown=node:node . .
 
 # Build the client application
-RUN npm run dist
+RUN npm run build
 
 # Make port accessible from outside the container
 EXPOSE 1234

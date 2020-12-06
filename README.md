@@ -12,12 +12,12 @@
 - parcel - bundler
 
 ### Development
-Build & serve web application: `npm run start-parcel`
+Build & serve web application: `npm run dev`
 
 ### Test
 `npm run test:unit`
 
-First start frontend `npm run start` \
+First start frontend `npm run start:ci` \
 Then run e2e test against it `npm run test:e2e`
 
 ### History

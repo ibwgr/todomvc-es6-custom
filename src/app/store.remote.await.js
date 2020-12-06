@@ -6,7 +6,7 @@
  */
 export default class Store{
     constructor(name){
-      this.serverUrl = 'http://localhost:4567'
+      this.serverUrl = process.env.API_SERVER_URL != null ? process.env.API_SERVER_URL : 'http://localhost:4567'
       this.name = name
     }
 
