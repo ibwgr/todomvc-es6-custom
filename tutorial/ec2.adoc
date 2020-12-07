@@ -1,6 +1,7 @@
 = TodoMVC AWS EC2 Setup
 :toc:
 :tip-caption: 💡
+:warning-caption: ⚠️
 
 == Einleitung
 
@@ -8,6 +9,13 @@ In diesem Tutorial wirst du die TodoMVC Applikation in der AWS (Amazon Web Servi
 Dazu nutzen wir Werkzeuge wie: Docker, SSH, Bash und Git.
 
 Am Ende wirst du eine öffentlich erreichbare URL haben auf der die Applikation läuft, inklusive Datenbank.
+
+== Vorbedingungen
+
+* Du hast bei dir lokal https://github.com/ibwgr/todomvc-java-server
+* Du hast bei dir lokal deinen Fork von https://github.com/ibwgr/todomvc-es6-custom.
+Dein Fork muss auf dem aktuellsten Stand sein.
+* Docker funktioniert bei dir.
 
 == Server in AWS Cloud erstellen
 
@@ -25,8 +33,10 @@ Am Ende wirst du eine öffentlich erreichbare URL haben auf der die Applikation 
 * [ ] Port 80 und 443 (HTTPS) in der Firewall öffnen.
 Port 22 (SSH) ist bereits offen.
 
+Im folgenden Video siehst du wie das geht:
 
 video::media/create-instance-cut.mp4[width=600]
+
 
 == Verbinden & Clonen
 
@@ -43,10 +53,14 @@ TIP: Du brauchst die pem-Datei (KeyPair) aus dem vorigen Schritt.
 
 * [ ] KeyPair konfigurieren
 * [ ] Login via SSH auf dem AWS Server
-* [ ] Clone GitHub Repository
+* [ ] Clone GitHub Repository Fork
 
+WARNING: Clone unbedingt deinen eigenen Fork.
+
+Im folgenden Video siehst du wie das geht:
 
 video::media/ssh-clone-cut.mp4[height=600]
+
 
 == Docker Images Deployment
 
@@ -63,6 +77,7 @@ image::media/docker-hub-images.png[DockerHub,300,300]
 * [ ] Docker Hub Account erstellen
 * [ ] TodoMVC Client Image lokal builden und auf Docker Hub pushen
 * [ ] TodoMVC Server Image lokal builden und auf Docker Hub pushen
+* [ ] docker-compose Image Name anpassen
 
 ==== Docker Hub Account erstellen
 
@@ -73,13 +88,14 @@ image::media/docker-hub-images.png[DockerHub,300,300]
 
 Der Pfad des folgenden Befehls wird bei dir anders sein.
 
-```
+[source]
+----
 cd ~/clones/todomvc-es6-custom
-```
+----
 
 ===== Konfiguration
 
-Bevor wir das Image erstellen müssen wir eine Konfiguration für den Parcel Build anpassen:
+Bevor wir das Image erstellen, müssen wir die Konfiguration für den Parcel Build anpassen:
 
 * Kopiere dazu die Datei dev.env als .env: `cp dev.env .env`.
 * Setze API_SERVER_URL auf "": `echo API_SERVER_URL="" >> .env`
@@ -95,21 +111,39 @@ Du kannst das überprüfen, indem du `npm run build` ausführst und dann im dist
 
 Anstelle von ideadapt musst du deine eigene Docker Hub Account ID verwenden.
 
-```
+[source]
+----
 docker build --tag ideadapt/todomvc-client:latest .
 docker push ideadapt/todomvc-java-server:latest
-```
+----
 
 ==== TodoMVC Server Image lokal builden und auf Docker Hub pushen
 
 Anstelle von ideadapt musst du deine eigene Docker Hub Account ID verwenden.
 Ebenfalls wird der Pfad des ersten Befehls (cd) bei dir anders sein.
 
-```
+[source]
+----
 cd ~/clones/todomvc-java-server
 docker build --tag ideadapt/todomvc-java-server:latest .
 docker push ideadapt/todomvc-java-server:latest
-```
+----
+
+==== docker-compose Image Namen anpassen
+
+Zurzeit steht in der docker-compose.yml noch nicht deine Docker Hub Account ID, sondern meine.
+Ersetze also ideadapt durch deine Docker Hub Account ID. Pushe die Änderungen auf deinen Fork.
+
+image::media/docker-compose-image-name.png[]
+
+[source]
+----
+cd ~/clones/todomvc-es6-custom
+# Image Name ändern
+git add docker-compose.yml
+git commit -m "set my personal docker hub account id"
+git push
+----
 
 == TodoMVC Applikation starten
 
@@ -122,17 +156,21 @@ docker push ideadapt/todomvc-java-server:latest
 === Schritte
 
 * [ ] Login via SSH auf dem AWS Server
+* [ ] Git pull
 * [ ] Konfiguration erstellen
+* [ ] docker-compose installieren
 * [ ] Alle Container via docker-compose starten
 
 ==== Login via SSH auf dem AWS Server
 
 Passe den pem-Pfad sowie die Serveraddresse entsprechend an:
 
-```
+[source]
+----
 ssh -i todomvc-ec2.pem ubuntu@ec2-54-198-196-156.compute-1.amazonaws.com
 cd todomvc-es6-custom
-```
+git pull origin master
+----
 
 ==== Konfiguration erstellen
 
@@ -141,19 +179,35 @@ Damit diese nicht in git eingecheckt sein müssen, verwenden wir wieder eine .en
 In unserem Tutorial verwenden wir die gleiche Konfiguration wie im dev.env.
 In der echten Welt würde die .env Datei, bevor docker-compose gestartet wird, erstellt werden, mit den geheimen Inhalten.
 
-```
+[source]
+----
 cp dev.env .env
-```
+----
+
+==== docker-compose installieren
+
+Auf dem Linux Server ist noch kein docker-compose installiert.
+Das lässt sich einfach mit einem Befehl nachholen:
+
+[source]
+----
+sudo apt -y install docker-compose
+----
 
 ==== Container starten
 
 Starte die Container zuest ohne -d Option, um etwaige Fehler direkt zu sehen.
 
-```
-docker-compose up
-```
+[source]
+----
+sudo docker-compose up
+----
 
-Teste ob die Applikation erreichbar ist.
+Teste, ob die Applikation erreichbar ist.
 Rufe dazu die URL aus dem EC2 Dashboard auf.
 
 image::media/ec2-instance-url.png[]
+
+WARNING: Zurzeit läuft die Applikation erst auf HTTP.
+
+image::media/online.png[]

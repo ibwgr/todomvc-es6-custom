@@ -2149,6 +2149,7 @@
         <div id="toctitle">Table of Contents</div>
         <ul class="sectlevel1">
             <li><a href="#_einleitung">Einleitung</a></li>
+            <li><a href="#_vorbedingungen">Vorbedingungen</a></li>
             <li><a href="#_server_in_aws_cloud_erstellen">Server in AWS Cloud erstellen</a>
                 <ul class="sectlevel2">
                     <li><a href="#_ziel">Ziel</a></li>
@@ -2191,6 +2192,27 @@
         </div>
     </div>
     <div class="sect1">
+        <h2 id="_vorbedingungen">Vorbedingungen</h2>
+        <div class="sectionbody">
+            <div class="ulist">
+                <ul>
+                    <li>
+                        <p>Du hast bei dir lokal <a href="https://github.com/ibwgr/todomvc-java-server" class="bare">https://github.com/ibwgr/todomvc-java-server</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p>Du hast bei dir lokal deinen Fork von <a href="https://github.com/ibwgr/todomvc-es6-custom"
+                                                                    class="bare">https://github.com/ibwgr/todomvc-es6-custom</a>.
+                            Dein Fork muss auf dem aktuellsten Stand sein.</p>
+                    </li>
+                    <li>
+                        <p>Docker funktioniert bei dir.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="sect1">
         <h2 id="_server_in_aws_cloud_erstellen">Server in AWS Cloud erstellen</h2>
         <div class="sectionbody">
             <div class="sect2">
@@ -2222,10 +2244,13 @@
                             <p>&#10063; EC2 Micro Instanz erstellen</p>
                         </li>
                         <li>
-                            <p>&#10063; Port 80 und 443 (HTTPS) in der Firewall öffnen.
-                                Port 22 (SSH) ist bereits offen.</p>
+                            <p>&#10063; Port 80 und 443 (HTTPS) in der Firewall öffnen. Port 22 (SSH) ist bereits
+                                offen.</p>
                         </li>
                     </ul>
+                </div>
+                <div class="paragraph">
+                    <p>Im folgenden Video siehst du wie das geht:</p>
                 </div>
                 <div class="videoblock">
                     <div class="content">
@@ -2280,9 +2305,24 @@
                             <p>&#10063; Login via SSH auf dem AWS Server</p>
                         </li>
                         <li>
-                            <p>&#10063; Clone GitHub Repository</p>
+                            <p>&#10063; Clone GitHub Repository Fork</p>
                         </li>
                     </ul>
+                </div>
+                <div class="admonitionblock warning">
+                    <table>
+                        <tr>
+                            <td class="icon">
+                                <div class="title">⚠️</div>
+                            </td>
+                            <td class="content">
+                                Clone unbedingt deinen eigenen Fork.
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="paragraph">
+                    <p>Im folgenden Video siehst du wie das geht:</p>
                 </div>
                 <div class="videoblock">
                     <div class="content">
@@ -2329,6 +2369,9 @@
                         <li>
                             <p>&#10063; TodoMVC Server Image lokal builden und auf Docker Hub pushen</p>
                         </li>
+                        <li>
+                            <p>&#10063; docker-compose Image Name anpassen</p>
+                        </li>
                     </ul>
                 </div>
                 <div class="sect3">
@@ -2359,7 +2402,7 @@
                     <div class="sect4">
                         <h5 id="_konfiguration">Konfiguration</h5>
                         <div class="paragraph">
-                            <p>Bevor wir das Image erstellen müssen wir eine Konfiguration für den Parcel Build
+                            <p>Bevor wir das Image erstellen, müssen wir die Konfiguration für den Parcel Build
                                 anpassen:</p>
                         </div>
                         <div class="ulist">
@@ -2416,6 +2459,29 @@ docker push ideadapt/todomvc-java-server:latest</code></pre>
                         </div>
                     </div>
                 </div>
+                <div class="sect3">
+                    <h4 id="_docker_compose_image_namen_anpassen">docker-compose Image Namen anpassen</h4>
+                    <div class="paragraph">
+                        <p>Zurzeit steht in der docker-compose.yml noch nicht deine Docker Hub Account ID, sondern
+                            meine.
+                            Ersetze also ideadapt durch deine Docker Hub Account ID. Pushe die Änderungen auf deinen
+                            Fork.</p>
+                    </div>
+                    <div class="imageblock">
+                        <div class="content">
+                            <img src="media/docker-compose-image-name.png" alt="docker compose image name">
+                        </div>
+                    </div>
+                    <div class="listingblock">
+                        <div class="content">
+<pre class="CodeRay highlight"><code>cd ~/clones/todomvc-es6-custom
+# Image Name ändern
+git add docker-compose.yml
+git commit -m &quot;set my personal docker hub account id&quot;
+git push</code></pre>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -2444,7 +2510,13 @@ docker push ideadapt/todomvc-java-server:latest</code></pre>
                             <p>&#10063; Login via SSH auf dem AWS Server</p>
                         </li>
                         <li>
+                            <p>&#10063; Git pull</p>
+                        </li>
+                        <li>
                             <p>&#10063; Konfiguration erstellen</p>
+                        </li>
+                        <li>
+                            <p>&#10063; docker-compose installieren</p>
                         </li>
                         <li>
                             <p>&#10063; Alle Container via docker-compose starten</p>
@@ -2459,7 +2531,8 @@ docker push ideadapt/todomvc-java-server:latest</code></pre>
                     <div class="listingblock">
                         <div class="content">
 <pre class="CodeRay highlight"><code>ssh -i todomvc-ec2.pem ubuntu@ec2-54-198-196-156.compute-1.amazonaws.com
-cd todomvc-es6-custom</code></pre>
+cd todomvc-es6-custom
+git pull origin master</code></pre>
                         </div>
                     </div>
                 </div>
@@ -2480,22 +2553,50 @@ cd todomvc-es6-custom</code></pre>
                     </div>
                 </div>
                 <div class="sect3">
+                    <h4 id="_docker_compose_installieren">docker-compose installieren</h4>
+                    <div class="paragraph">
+                        <p>Auf dem Linux Server ist noch kein docker-compose installiert. Das lässt sich einfach mit
+                            einem Befehl nachholen:</p>
+                    </div>
+                    <div class="listingblock">
+                        <div class="content">
+                            <pre class="CodeRay highlight"><code>sudo apt -y install docker-compose</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="sect3">
                     <h4 id="_container_starten">Container starten</h4>
                     <div class="paragraph">
                         <p>Starte die Container zuest ohne -d Option, um etwaige Fehler direkt zu sehen.</p>
                     </div>
                     <div class="listingblock">
                         <div class="content">
-                            <pre class="CodeRay highlight"><code>docker-compose up</code></pre>
+                            <pre class="CodeRay highlight"><code>sudo docker-compose up</code></pre>
                         </div>
                     </div>
                     <div class="paragraph">
-                        <p>Teste ob die Applikation erreichbar ist.
-                            Rufe dazu die URL aus dem EC2 Dashboard auf.</p>
+                        <p>Teste, ob die Applikation erreichbar ist. Rufe dazu die URL aus dem EC2 Dashboard auf.</p>
                     </div>
                     <div class="imageblock">
                         <div class="content">
                             <img src="media/ec2-instance-url.png" alt="ec2 instance url">
+                        </div>
+                    </div>
+                    <div class="admonitionblock warning">
+                        <table>
+                            <tr>
+                                <td class="icon">
+                                    <div class="title">⚠️</div>
+                                </td>
+                                <td class="content">
+                                    Zurzeit läuft die Applikation erst auf HTTP.
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="imageblock">
+                        <div class="content">
+                            <img src="media/online.png" alt="online">
                         </div>
                     </div>
                 </div>
@@ -2505,7 +2606,7 @@ cd todomvc-es6-custom</code></pre>
 </div>
 <div id="footer">
     <div id="footer-text">
-        Last updated 2020-12-07 20:45:34 +0100
+        Last updated 2020-12-07 21:19:47 +0100
     </div>
 </div>
 </body>
