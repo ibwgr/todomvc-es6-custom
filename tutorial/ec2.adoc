@@ -8,7 +8,7 @@
 In diesem Tutorial wirst du die TodoMVC Applikation in der AWS (Amazon Web Services) Cloud deployen.
 Dazu nutzen wir Werkzeuge wie: Docker, SSH, Bash und Git.
 
-Am Ende wirst du eine öffentlich erreichbare URL haben auf der die Applikation läuft, inklusive Datenbank.
+Am Ende wirst du eine öffentlich erreichbare URL haben, auf der die Applikation läuft, inklusive Datenbank.
 
 == Vorbedingungen
 
@@ -33,7 +33,7 @@ Dein Fork muss auf dem aktuellsten Stand sein.
 * [ ] Port 80 und 443 (HTTPS) in der Firewall öffnen.
 Port 22 (SSH) ist bereits offen.
 
-Im folgenden Video siehst du wie das geht:
+Im folgenden Video siehst du, wie das geht:
 
 video::media/create-instance-cut.mp4[width=600]
 
@@ -57,7 +57,7 @@ TIP: Du brauchst die pem-Datei (KeyPair) aus dem vorigen Schritt.
 
 WARNING: Clone unbedingt deinen eigenen Fork.
 
-Im folgenden Video siehst du wie das geht:
+Im folgenden Video siehst du, wie das geht:
 
 video::media/ssh-clone-cut.mp4[height=600]
 
@@ -211,3 +211,8 @@ image::media/ec2-instance-url.png[]
 WARNING: Zurzeit läuft die Applikation erst auf HTTP.
 
 image::media/online.png[]
+
+== Nächste Schritte
+
+Continuous Delivery.
+Sprich: Wenn wir etwas auf den master Branch pushen, wird es direkt auf AWS deployed.
