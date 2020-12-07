@@ -1,0 +1,159 @@
+= TodoMVC AWS EC2 Setup
+:toc:
+:tip-caption: 💡
+
+== Einleitung
+
+In diesem Tutorial wirst du die TodoMVC Applikation in der AWS (Amazon Web Services) Cloud deployen.
+Dazu nutzen wir Werkzeuge wie: Docker, SSH, Bash und Git.
+
+Am Ende wirst du eine öffentlich erreichbare URL haben auf der die Applikation läuft, inklusive Datenbank.
+
+== Server in AWS Cloud erstellen
+
+=== Ziel
+
+====
+* [*] Eigener, kostenloser Linux Webserver läuft in der AWS Cloud
+====
+
+=== Schritte
+
+* [ ] Als Erstes musst du einen Account bei Amazon anlegen
+* [ ] Dann Login auf https://aws.amazon.com/de/console
+* [ ] EC2 Micro Instanz erstellen
+* [ ] Port 80 und 443 (HTTPS) in der Firewall öffnen.
+Port 22 (SSH) ist bereits offen.
+
+
+video::media/create-instance-cut.mp4[width=600]
+
+== Verbinden & Clonen
+
+=== Ziel
+
+====
+* [*] Login via SSH auf dem AWS Server
+* [*] TodoMVC Repository auf Server gecloned
+====
+
+=== Schritte
+
+TIP: Du brauchst die pem-Datei (KeyPair) aus dem vorigen Schritt.
+
+* [ ] KeyPair konfigurieren
+* [ ] Login via SSH auf dem AWS Server
+* [ ] Clone GitHub Repository
+
+
+video::media/ssh-clone-cut.mp4[height=600]
+
+== Docker Images Deployment
+
+=== Ziel
+
+====
+* [*] Docker Images von Client und Server auf Docker Hub deployed
+
+image::media/docker-hub-images.png[DockerHub,300,300]
+====
+
+=== Schritte
+
+* [ ] Docker Hub Account erstellen
+* [ ] TodoMVC Client Image lokal builden und auf Docker Hub pushen
+* [ ] TodoMVC Server Image lokal builden und auf Docker Hub pushen
+
+==== Docker Hub Account erstellen
+
+* Erstelle einen Account auf https://hub.docker.com/
+* Logge dich in deiner Shell auf Docker Hub ein: `docker login`
+
+==== TodoMVC Client Image lokal builden und auf Docker Hub pushen
+
+Der Pfad des folgenden Befehls wird bei dir anders sein.
+
+```
+cd ~/clones/todomvc-es6-custom
+```
+
+===== Konfiguration
+
+Bevor wir das Image erstellen müssen wir eine Konfiguration für den Parcel Build anpassen:
+
+* Kopiere dazu die Datei dev.env als .env: `cp dev.env .env`.
+* Setze API_SERVER_URL auf "": `echo API_SERVER_URL="" >> .env`
+
+Der Wert von API_SERVER_URL wird von Parcel gelesen und im folgenden JavaScript Code ersetzt:
+
+image::media/parcel-env.png[]
+
+Das heisst im kompilierten JavaScript steht dann `this.serverUrl = ""`.
+Du kannst das überprüfen, indem du `npm run build` ausführst und dann im dist Ordner in der app*.js Datei die serverUrl Definition anschaust.
+
+===== Build & Push
+
+Anstelle von ideadapt musst du deine eigene Docker Hub Account ID verwenden.
+
+```
+docker build --tag ideadapt/todomvc-client:latest .
+docker push ideadapt/todomvc-java-server:latest
+```
+
+==== TodoMVC Server Image lokal builden und auf Docker Hub pushen
+
+Anstelle von ideadapt musst du deine eigene Docker Hub Account ID verwenden.
+Ebenfalls wird der Pfad des ersten Befehls (cd) bei dir anders sein.
+
+```
+cd ~/clones/todomvc-java-server
+docker build --tag ideadapt/todomvc-java-server:latest .
+docker push ideadapt/todomvc-java-server:latest
+```
+
+== TodoMVC Applikation starten
+
+=== Ziel
+
+====
+* [*] Webapplikation ist via Browser erreichbar
+====
+
+=== Schritte
+
+* [ ] Login via SSH auf dem AWS Server
+* [ ] Konfiguration erstellen
+* [ ] Alle Container via docker-compose starten
+
+==== Login via SSH auf dem AWS Server
+
+Passe den pem-Pfad sowie die Serveraddresse entsprechend an:
+
+```
+ssh -i todomvc-ec2.pem ubuntu@ec2-54-198-196-156.compute-1.amazonaws.com
+cd todomvc-es6-custom
+```
+
+==== Konfiguration erstellen
+
+Die Konfiguration der MySQL Datenbank beinhaltet geheime Daten, z.B. das Passwort.
+Damit diese nicht in git eingecheckt sein müssen, verwenden wir wieder eine .env Datei (.env ist zur Sicherheit auch im .gitignore).
+In unserem Tutorial verwenden wir die gleiche Konfiguration wie im dev.env.
+In der echten Welt würde die .env Datei, bevor docker-compose gestartet wird, erstellt werden, mit den geheimen Inhalten.
+
+```
+cp dev.env .env
+```
+
+==== Container starten
+
+Starte die Container zuest ohne -d Option, um etwaige Fehler direkt zu sehen.
+
+```
+docker-compose up
+```
+
+Teste ob die Applikation erreichbar ist.
+Rufe dazu die URL aus dem EC2 Dashboard auf.
+
+image::media/ec2-instance-url.png[]
