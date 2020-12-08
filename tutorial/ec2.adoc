@@ -1,7 +1,9 @@
 = TodoMVC AWS EC2 Setup
 :toc:
+:toclevels: 3
 :tip-caption: 💡
 :warning-caption: ⚠️
+:source-highlighter: highlightjs
 
 == Einleitung
 
@@ -88,7 +90,7 @@ image::media/docker-hub-images.png[DockerHub,300,300]
 
 Der Pfad des folgenden Befehls wird bei dir anders sein.
 
-[source]
+[source,bash]
 ----
 cd ~/clones/todomvc-es6-custom
 ----
@@ -111,7 +113,7 @@ Du kannst das überprüfen, indem du `npm run build` ausführst und dann im dist
 
 Anstelle von ideadapt musst du deine eigene Docker Hub Account ID verwenden.
 
-[source]
+[source,bash]
 ----
 docker build --tag ideadapt/todomvc-client:latest .
 docker push ideadapt/todomvc-java-server:latest
@@ -122,7 +124,7 @@ docker push ideadapt/todomvc-java-server:latest
 Anstelle von ideadapt musst du deine eigene Docker Hub Account ID verwenden.
 Ebenfalls wird der Pfad des ersten Befehls (cd) bei dir anders sein.
 
-[source]
+[source,bash]
 ----
 cd ~/clones/todomvc-java-server
 docker build --tag ideadapt/todomvc-java-server:latest .
@@ -136,7 +138,7 @@ Ersetze also ideadapt durch deine Docker Hub Account ID. Pushe die Änderungen a
 
 image::media/docker-compose-image-name.png[]
 
-[source]
+[source,bash]
 ----
 cd ~/clones/todomvc-es6-custom
 # Image Name ändern
@@ -165,7 +167,7 @@ git push
 
 Passe den pem-Pfad sowie die Serveraddresse entsprechend an:
 
-[source]
+[source,bash]
 ----
 ssh -i todomvc-ec2.pem ubuntu@ec2-54-198-196-156.compute-1.amazonaws.com
 cd todomvc-es6-custom
@@ -179,7 +181,7 @@ Damit diese nicht in git eingecheckt sein müssen, verwenden wir wieder eine .en
 In unserem Tutorial verwenden wir die gleiche Konfiguration wie im dev.env.
 In der echten Welt würde die .env Datei, bevor docker-compose gestartet wird, erstellt werden, mit den geheimen Inhalten.
 
-[source]
+[source,bash]
 ----
 cp dev.env .env
 ----
@@ -189,7 +191,7 @@ cp dev.env .env
 Auf dem Linux Server ist noch kein docker-compose installiert.
 Das lässt sich einfach mit einem Befehl nachholen:
 
-[source]
+[source,bash]
 ----
 sudo apt -y install docker-compose
 ----
@@ -198,7 +200,7 @@ sudo apt -y install docker-compose
 
 Starte die Container zuest ohne -d Option, um etwaige Fehler direkt zu sehen.
 
-[source]
+[source,bash]
 ----
 sudo docker-compose up
 ----

@@ -1,0 +1,25 @@
+@import url(asciidoctor.css);
+
+body {
+    font-family: "Open Sans";
+}
+
+#toctitle {
+    visibility: hidden;
+}
+
+#toc {
+    border-bottom: none;
+}
+
+.sect1, .sect1 + .sect1 {
+    border-top: 1px solid #aaa;
+}
+
+h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {
+    margin-top: 3rem;
+}
+
+.imageblock img {
+    box-shadow: 0 1px 4px #e0e0dc;
+}
