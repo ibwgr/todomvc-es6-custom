@@ -4,10 +4,6 @@ body {
     font-family: "Open Sans";
 }
 
-#toctitle {
-    visibility: hidden;
-}
-
 #toc {
     border-bottom: none;
 }
@@ -20,6 +16,19 @@ h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {
     margin-top: 3rem;
 }
 
+#toctitle {
+    visibility: hidden;
+    margin-top: 0;
+}
+
+h2 {
+    font-weight: bold;
+}
+
 .imageblock img {
     box-shadow: 0 1px 4px #e0e0dc;
+}
+
+html, body {
+    font-size: 12px;
 }

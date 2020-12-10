@@ -136,7 +136,7 @@ docker push ideadapt/todomvc-java-server:latest
 Zurzeit steht in der docker-compose.yml noch nicht deine Docker Hub Account ID, sondern meine.
 Ersetze also ideadapt durch deine Docker Hub Account ID. Pushe die Änderungen auf deinen Fork.
 
-image::media/docker-compose-image-name.png[]
+image::media/docker-compose-image-name.png[width=300]
 
 [source,bash]
 ----

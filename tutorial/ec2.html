@@ -9,28 +9,37 @@
 <style>
 @import url(asciidoctor.css);
 
-body{
+body {
     font-family: "Open Sans";
 }
 
-#toctitle{
-    visibility: hidden;
-}
-
-#toc{
+#toc {
     border-bottom: none;
 }
 
-.sect1, .sect1 + .sect1{
+.sect1, .sect1 + .sect1 {
     border-top: 1px solid #aaa;
 }
 
-h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6{
+h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {
     margin-top: 3rem;
 }
 
-.imageblock img{
+#toctitle {
+    visibility: hidden;
+    margin-top: 0;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+.imageblock img {
     box-shadow: 0 1px 4px #e0e0dc;
+}
+
+html, body {
+    font-size: 12px;
 }
 
 </style>
@@ -364,7 +373,7 @@ Ersetze also ideadapt durch deine Docker Hub Account ID. Pushe die Änderungen a
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/docker-compose-image-name.png" alt="docker compose image name">
+    <img src="media/docker-compose-image-name.png" alt="docker compose image name" width="300">
 </div>
 </div>
 <div class="listingblock">
@@ -509,7 +518,7 @@ Sprich: Wenn wir etwas auf den master Branch pushen, wird es direkt auf AWS depl
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-08 20:14:07 UTC
+    Last updated 2020-12-10 21:59:26 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
