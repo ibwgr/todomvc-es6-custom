@@ -1,0 +1,50 @@
+@startuml
+agent browser
+
+cloud vpc {
+    node "server" {
+        rectangle docker-network {
+            component nginx:80 as nc {
+                frame nginx:8000 as np {
+                }
+            }
+            component client as cc {
+                frame client:1234 as cp {
+                }
+            }
+            component server as sc {
+                frame server:4567 as sp {
+                }
+            }
+            component db as dc {
+                frame db:3306 as dp {
+                }
+            }
+        }
+    }
+}
+
+browser -> vpc#green: server:80/
+vpc -> server#green: server:80/
+server -do-> nc#green: :80/
+nc .ri-> np#green :/
+
+np -do-> cc#green :client:1234/
+cc .-> cp#green :/
+
+
+browser -> vpc: server:80/todo
+vpc -> server: server:80/todo
+server -do-> nc: :/todo
+nc .ri-> np :/todo
+
+np -do-> sc :server:4567/todo
+sc .-> sp :/todo
+
+sp -do-> dc :db:3306
+dc .-> dp
+
+
+
+
+@enduml
