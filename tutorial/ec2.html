@@ -100,7 +100,7 @@ html, body {
 <div class="sectionbody">
 <div class="paragraph">
 <p>In diesem Tutorial wirst du die TodoMVC Applikation in der AWS (Amazon Web Services) Cloud deployen.
-Dazu nutzen wir Werkzeuge wie: Docker, SSH, Bash und Git.</p>
+Dazu nutzen wir Werkzeuge wie: Docker, SSH, Maven, NPM, Bash und Git.</p>
 </div>
 <div class="paragraph">
 <p>Am Ende wirst du eine öffentlich erreichbare URL haben, auf der die Applikation läuft, inklusive Datenbank.</p>
@@ -120,7 +120,11 @@ Dazu nutzen wir Werkzeuge wie: Docker, SSH, Bash und Git.</p>
 Dein Fork muss auf dem aktuellsten Stand sein.</p>
 </li>
 <li>
-<p>Docker funktioniert bei dir.</p>
+<p>Docker, NPM und Git funktioniert bei dir lokal.</p>
+</li>
+<li>
+<p>Du hast eine Linux basierte Umgebung.
+Sämtliche Befehle und Beispiele sind nicht für Windows ausgelegt.</p>
 </li>
 </ul>
 </div>
@@ -339,14 +343,14 @@ Du kannst das überprüfen, indem du <code>npm run build</code> ausführst und d
 </div>
 </div>
 <div class="sect4">
-<h5 id="_build_push">Build &amp; Push</h5>
+<h5 id="_build_push_client">Build &amp; Push Client</h5>
 <div class="paragraph">
 <p>Anstelle von ideadapt musst du deine eigene Docker Hub Account ID verwenden.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker build --tag ideadapt/todomvc-client:latest .
-docker push ideadapt/todomvc-java-server:latest</code></pre>
+docker push ideadapt/todomvc-client:latest</code></pre>
 </div>
 </div>
 </div>
@@ -373,7 +377,7 @@ Ersetze also ideadapt durch deine Docker Hub Account ID. Pushe die Änderungen a
 </div>
 <div class="imageblock">
 <div class="content">
-    <img src="media/docker-compose-image-name.png" alt="docker compose image name" width="300">
+<img src="media/docker-compose-image-name.png" alt="docker compose image name" width="300">
 </div>
 </div>
 <div class="listingblock">
@@ -430,7 +434,7 @@ git push</code></pre>
 <div class="sect3">
 <h4 id="_login_via_ssh_auf_dem_aws_server">Login via SSH auf dem AWS Server</h4>
 <div class="paragraph">
-<p>Passe den pem-Pfad sowie die Serveraddresse entsprechend an:</p>
+<p>Passe den pem-Pfad und die Serveraddresse entsprechend deiner EC2-Instanz an:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -444,7 +448,7 @@ git pull origin master</code></pre>
 <h4 id="_konfiguration_erstellen">Konfiguration erstellen</h4>
 <div class="paragraph">
 <p>Die Konfiguration der MySQL Datenbank beinhaltet geheime Daten, z.B. das Passwort.
-Damit diese nicht in git eingecheckt sein müssen, verwenden wir wieder eine .env Datei (.env ist zur Sicherheit auch im .gitignore).
+Damit diese nicht in Git eingecheckt sein müssen, verwenden wir wieder eine .env Datei (.env ist zur Sicherheit auch im .gitignore).
 In unserem Tutorial verwenden wir die gleiche Konfiguration wie im dev.env.
 In der echten Welt würde die .env Datei, bevor docker-compose gestartet wird, erstellt werden, mit den geheimen Inhalten.</p>
 </div>
@@ -462,7 +466,7 @@ Das lässt sich einfach mit einem Befehl nachholen:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo apt -y install docker-compose</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo snap install docker</code></pre>
 </div>
 </div>
 </div>
@@ -510,7 +514,7 @@ Zurzeit läuft die Applikation erst auf HTTP.
 <h2 id="_nächste_schritte">Nächste Schritte</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Continuous Delivery.
+<p>Continuous Deployment.
 Sprich: Wenn wir etwas auf den master Branch pushen, wird es direkt auf AWS deployed.</p>
 </div>
 </div>
@@ -518,7 +522,7 @@ Sprich: Wenn wir etwas auf den master Branch pushen, wird es direkt auf AWS depl
 </div>
 <div id="footer">
 <div id="footer-text">
-    Last updated 2020-12-10 21:59:26 UTC
+Last updated 2021-01-01 12:27:42 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

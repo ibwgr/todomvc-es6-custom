@@ -8,7 +8,7 @@
 == Einleitung
 
 In diesem Tutorial wirst du die TodoMVC Applikation in der AWS (Amazon Web Services) Cloud deployen.
-Dazu nutzen wir Werkzeuge wie: Docker, SSH, Bash und Git.
+Dazu nutzen wir Werkzeuge wie: Docker, SSH, Maven, NPM, Bash und Git.
 
 Am Ende wirst du eine öffentlich erreichbare URL haben, auf der die Applikation läuft, inklusive Datenbank.
 
@@ -17,7 +17,9 @@ Am Ende wirst du eine öffentlich erreichbare URL haben, auf der die Applikation
 * Du hast bei dir lokal https://github.com/ibwgr/todomvc-java-server
 * Du hast bei dir lokal deinen Fork von https://github.com/ibwgr/todomvc-es6-custom.
 Dein Fork muss auf dem aktuellsten Stand sein.
-* Docker funktioniert bei dir.
+* Docker, NPM und Git funktioniert bei dir lokal.
+* Du hast eine Linux basierte Umgebung.
+Sämtliche Befehle und Beispiele sind nicht für Windows ausgelegt.
 
 == Server in AWS Cloud erstellen
 
@@ -109,14 +111,14 @@ image::media/parcel-env.png[]
 Das heisst im kompilierten JavaScript steht dann `this.serverUrl = ""`.
 Du kannst das überprüfen, indem du `npm run build` ausführst und dann im dist Ordner in der app*.js Datei die serverUrl Definition anschaust.
 
-===== Build & Push
+===== Build & Push Client
 
 Anstelle von ideadapt musst du deine eigene Docker Hub Account ID verwenden.
 
 [source,bash]
 ----
 docker build --tag ideadapt/todomvc-client:latest .
-docker push ideadapt/todomvc-java-server:latest
+docker push ideadapt/todomvc-client:latest
 ----
 
 ==== TodoMVC Server Image lokal builden und auf Docker Hub pushen
@@ -165,7 +167,7 @@ git push
 
 ==== Login via SSH auf dem AWS Server
 
-Passe den pem-Pfad sowie die Serveraddresse entsprechend an:
+Passe den pem-Pfad und die Serveraddresse entsprechend deiner EC2-Instanz an:
 
 [source,bash]
 ----
@@ -177,7 +179,7 @@ git pull origin master
 ==== Konfiguration erstellen
 
 Die Konfiguration der MySQL Datenbank beinhaltet geheime Daten, z.B. das Passwort.
-Damit diese nicht in git eingecheckt sein müssen, verwenden wir wieder eine .env Datei (.env ist zur Sicherheit auch im .gitignore).
+Damit diese nicht in Git eingecheckt sein müssen, verwenden wir wieder eine .env Datei (.env ist zur Sicherheit auch im .gitignore).
 In unserem Tutorial verwenden wir die gleiche Konfiguration wie im dev.env.
 In der echten Welt würde die .env Datei, bevor docker-compose gestartet wird, erstellt werden, mit den geheimen Inhalten.
 
@@ -193,7 +195,7 @@ Das lässt sich einfach mit einem Befehl nachholen:
 
 [source,bash]
 ----
-sudo apt -y install docker-compose
+sudo snap install docker
 ----
 
 ==== Container starten
@@ -216,5 +218,5 @@ image::media/online.png[]
 
 == Nächste Schritte
 
-Continuous Delivery.
+Continuous Deployment.
 Sprich: Wenn wir etwas auf den master Branch pushen, wird es direkt auf AWS deployed.
