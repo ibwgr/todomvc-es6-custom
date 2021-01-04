@@ -12,14 +12,14 @@ node "server" {
     }
 }
 
-browser -> server#green: server:80/
-server -do-> nc#green: :80/
+browser -> server#green: example.com:80/
+server -do-> nc#green: example.com:80/
 
 nc -do-> cc#green :client:1234/
 
 
-browser -> server: server:80/todo
-server -do-> nc: :/todo
+browser -> server: example.com:80/todo
+server -do-> nc: example.com:80/todo
 
 nc -do-> sc :server:4567/todo
 sc -do-> dc :db:3306

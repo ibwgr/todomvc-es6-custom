@@ -24,18 +24,18 @@ cloud vpc {
     }
 }
 
-browser -> vpc#green: server:80/
-vpc -> server#green: server:80/
-server -do-> nc#green: :80/
+browser -> vpc#green: example.com:80/
+vpc -> server#green: example.com:80/
+server -do-> nc#green: example.com:80/
 nc .ri-> np#green :/
 
 np -do-> cc#green :client:1234/
 cc .-> cp#green :/
 
 
-browser -> vpc: server:80/todo
-vpc -> server: server:80/todo
-server -do-> nc: :/todo
+browser -> vpc: example.com:80/todo
+vpc -> server: example.com:80/todo
+server -do-> nc: example.com:/todo
 nc .ri-> np :/todo
 
 np -do-> sc :server:4567/todo
