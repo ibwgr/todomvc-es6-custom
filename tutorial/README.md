@@ -4,6 +4,8 @@ git lfs must be installed
 
 # Usage
 
+Open ec2.html in your browser.
+
 # Render
 
 `./render.sh`
