@@ -101,15 +101,15 @@ cd ~/clones/todomvc-es6-custom
 
 Bevor wir das Image erstellen, müssen wir die Konfiguration für den Parcel Build anpassen:
 
-* Kopiere dazu die Datei dev.env als .env: `cp dev.env .env`.
-* Setze API_SERVER_URL auf "": `echo API_SERVER_URL="" >> .env`
+* Kopiere dazu die Datei dev.env als .env. Entsprechender Bash Befehl: `cp dev.env .env`
+* Setze API_SERVER_URL auf "". Entsprechender Bash Befehl: `echo API_SERVER_URL="" >> .env`
 
 Der Wert von API_SERVER_URL wird von Parcel gelesen und im folgenden JavaScript Code ersetzt:
 
 image::media/parcel-env.png[]
 
 Das heisst im kompilierten JavaScript steht dann `this.serverUrl = ""`.
-Du kannst das überprüfen, indem du `npm run build` ausführst und dann im dist Ordner in der app*.js Datei die serverUrl Definition anschaust.
+Du kannst das überprüfen, indem du lokal `npm run build` ausführst und dann im dist Ordner in der app*.js Datei die serverUrl Definition anschaust.
 
 ===== Build & Push Client
 
@@ -207,12 +207,14 @@ Starte die Container zuest ohne -d Option, um etwaige Fehler direkt zu sehen.
 sudo docker-compose up
 ----
 
+TIP: Du kannst jederzeit erneut ein Docker Image build & push ausführen. Das bisherige Image wird damit überschrieben. Damit dieses neue Image angezogen wird, musst du vor dem `docker-compuse up` `docker-compuse pull` ausführen.
+
 Teste, ob die Applikation erreichbar ist.
 Rufe dazu die URL aus dem EC2 Dashboard auf.
 
 image::media/ec2-instance-url.png[]
 
-WARNING: Zurzeit läuft die Applikation erst auf HTTP.
+WARNING: Zurzeit läuft die Applikation erst auf *HTTP*.
 
 image::media/online.png[]
 

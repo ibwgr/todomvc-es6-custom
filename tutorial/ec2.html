@@ -322,10 +322,10 @@ Your browser does not support the video tag.
 <div class="ulist">
 <ul>
 <li>
-<p>Kopiere dazu die Datei dev.env als .env: <code>cp dev.env .env</code>.</p>
+<p>Kopiere dazu die Datei dev.env als .env. Entsprechender Bash Befehl: <code>cp dev.env .env</code></p>
 </li>
 <li>
-<p>Setze API_SERVER_URL auf "": <code>echo API_SERVER_URL="" &gt;&gt; .env</code></p>
+<p>Setze API_SERVER_URL auf "". Entsprechender Bash Befehl: <code>echo API_SERVER_URL="" &gt;&gt; .env</code></p>
 </li>
 </ul>
 </div>
@@ -339,7 +339,7 @@ Your browser does not support the video tag.
 </div>
 <div class="paragraph">
 <p>Das heisst im kompilierten JavaScript steht dann <code>this.serverUrl = ""</code>.
-Du kannst das überprüfen, indem du <code>npm run build</code> ausführst und dann im dist Ordner in der app*.js Datei die serverUrl Definition anschaust.</p>
+Du kannst das überprüfen, indem du lokal <code>npm run build</code> ausführst und dann im dist Ordner in der app*.js Datei die serverUrl Definition anschaust.</p>
 </div>
 </div>
 <div class="sect4">
@@ -480,6 +480,18 @@ Das lässt sich einfach mit einem Befehl nachholen:</p>
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo docker-compose up</code></pre>
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">💡</div>
+</td>
+<td class="content">
+Du kannst jederzeit erneut ein Docker Image build &amp; push ausführen. Das bisherige Image wird damit überschrieben. Damit dieses neue Image angezogen wird, musst du vor dem <code>docker-compuse up</code> <code>docker-compuse pull</code> ausführen.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Teste, ob die Applikation erreichbar ist.
 Rufe dazu die URL aus dem EC2 Dashboard auf.</p>
@@ -496,7 +508,7 @@ Rufe dazu die URL aus dem EC2 Dashboard auf.</p>
 <div class="title">⚠️</div>
 </td>
 <td class="content">
-Zurzeit läuft die Applikation erst auf HTTP.
+Zurzeit läuft die Applikation erst auf <strong>HTTP</strong>.
 </td>
 </tr>
 </table>
@@ -522,7 +534,7 @@ Sprich: Wenn wir etwas auf den master Branch pushen, wird es direkt auf AWS depl
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-01 12:27:42 UTC
+Last updated 2021-01-09 17:21:25 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
