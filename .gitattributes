@@ -1,4 +1,0 @@
-tutorial/media/*.mp4 filter=lfs diff=lfs merge=lfs -text
-tutorial/media/create-instance-cut.mp4 filter=lfs diff=lfs merge=lfs -text
-tutorial/media/ssh-clone-cut.mp4 filter=lfs diff=lfs merge=lfs -text
-*.mp4 filter=lfs diff=lfs merge=lfs -text
