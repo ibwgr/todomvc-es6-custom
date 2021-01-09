@@ -187,3 +187,4 @@ mochawesome-report/
 
 
 .env
+*.mp4
