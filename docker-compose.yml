@@ -7,7 +7,7 @@ services:
       - todonet
 
   server:
-    image: ideadapt/todomvc-java-server
+    image: ideadapt/todomvc-java-server:latest
     networks:
       - todonet
     environment:
