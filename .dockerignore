@@ -1,7 +1,11 @@
+.cache
+.idea
+.dockerignore
+Dockerfile
 node_modules
 dist
 mochawesome-report
+self
 travis
-Dockerfile
-.dockerignore
+tutorial
 *.pem
