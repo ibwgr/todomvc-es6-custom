@@ -1,10 +1,10 @@
 import {until, Key} from 'selenium-webdriver'
 import {describe, it, beforeEach, after} from 'mocha'
 
-import init from './selenium.helper'
+import init from './selenium.helper.mjs'
 const {driver, config, assert} = init()
 
-import Index from './index.po'
+import Index from './index.po.mjs'
 const page = new Index(driver, config.target)
 
 describe('Index', () => {

@@ -1,4 +1,4 @@
-'use strict'
+
 export default class{
     constructor($el){
         this.$el = $el
@@ -9,8 +9,8 @@ export default class{
         return {
             next(){
                 let next = sibling.nextSibling
-                return { 
-                    done: next == null, 
+                return {
+                    done: next == null,
                     value: (sibling = next)
                 }
             }

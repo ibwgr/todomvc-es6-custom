@@ -5,7 +5,7 @@
 1. `npm install`
 1. install eslint plugin in intellij
 
-### Module
+### Modules
 - mocha – test runner & test suite supporting BDD (describe, it)
 - sinon – mocking / spying in unit tests
 - chai – assertion library für e2e tests (promise fähig)
@@ -17,7 +17,8 @@ Build & serve web application: `npm run dev`
 ### Test
 `npm run test:unit`
 
-First start frontend `npm run start:ci` \
+First, make sure an API server is running \
+Then start frontend `npm run start:ci` \
 Then run e2e test against it `npm run test:e2e`
 
 ### History

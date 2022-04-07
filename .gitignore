@@ -1,6 +1,6 @@
 /build
 /dist
-/.cache
+/.parcel-cache
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template

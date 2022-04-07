@@ -1,4 +1,4 @@
-import SiblingIterator from './lib/sibling-iterator.js'
+import SiblingIterator from './lib/sibling-iterator.mjs'
 import he from 'he'
 
 const getElement = Symbol()

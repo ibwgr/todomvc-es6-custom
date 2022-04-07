@@ -8,10 +8,10 @@
     "dev": "rm -rf .cache && npx parcel src/app/index.html",
     "start:ci": "npm run build && ./node_modules/.bin/http-server dist --port 1234",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:unit": "./node_modules/.bin/mocha src/test/unit/**.js",
+    "test:unit": "./node_modules/.bin/mocha src/test/unit/**.mjs",
     "hub": "./node_modules/.bin/selenium-standalone start",
-    "test:e2e": "./node_modules/.bin/mocha src/test/e2e/*.test.js --timeout 5000",
-    "build": "NODE_ENV=production rm -rf dist && rm -rf .cache && ./node_modules/.bin/parcel build src/app/index.html"
+    "test:e2e": "./node_modules/.bin/mocha src/test/e2e/*.test.mjs --timeout 5000",
+    "build": "NODE_ENV=production rm -rf dist && rm -rf .parcel-cache && ./node_modules/.bin/parcel build src/app/index.html"
   },
   "browserslist": [
     "last 2 chrome versions"
@@ -19,21 +19,16 @@
   "devDependencies": {
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
-    "chromedriver": "86.0.0",
+    "chromedriver": "100.0.0",
     "eslint": "6.7.2",
-    "mocha": "^7.1.2",
-    "selenium-webdriver": "3.6.0",
+    "mocha": "^8.4.0",
+    "selenium-webdriver": "4.1.1",
     "sinon": "7.5.0"
   },
   "dependencies": {
-    "@babel/cli": "7.7.5",
-    "@babel/core": "7.7.5",
-    "@babel/polyfill": "7.7.0",
-    "@babel/preset-env": "7.7.6",
-    "@babel/register": "7.7.4",
     "he": "1.2.0",
-    "parcel": "1.12.4",
-    "http-server": "^0.12.3",
+    "http-server": "0.12.3",
+    "parcel": "2.4.1",
     "todomvc-app-css": "2.3.0"
   }
 }

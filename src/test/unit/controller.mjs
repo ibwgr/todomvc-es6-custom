@@ -1,8 +1,9 @@
 import assert from 'assert'
-import {spy} from 'sinon'
-import Controller from '../../app/controller'
-import Store from '../../app/store.remote.promises'
-import {events} from '../../app/view'
+import s from 'sinon'
+const {spy} = s
+import Controller from '../../app/controller.mjs'
+import Store from '../../app/store.remote.promises.mjs'
+import {events} from '../../app/view.mjs'
 
 describe('Controller', function() {
   describe('makeValidatorObject()', function() {

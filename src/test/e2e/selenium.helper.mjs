@@ -1,9 +1,9 @@
-require('chromedriver')
+import chromedriver from 'chromedriver'
 import webdriver from 'selenium-webdriver'
-import chrome from 'selenium-webdriver/chrome'
+import chrome from 'selenium-webdriver/chrome.js'
 import chai from 'chai'
 import chaiAsPromised from 'chai-as-promised'
-import config from './config.js'
+import config from './config.mjs'
 
 chai.use(chaiAsPromised)
 const {assert} = chai
