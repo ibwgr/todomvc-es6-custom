@@ -5,13 +5,12 @@
   "author": "Ueli Kunz <kunz@ideadapt.net>",
   "license": "MIT",
   "scripts": {
-    "dev": "rm -rf .cache && npx parcel src/app/index.html",
-    "start:ci": "npm run build && ./node_modules/.bin/http-server dist --port 1234",
+    "dev": "npx rimraf .parcel-cache && npx parcel src/app/index.html",
+    "start:ci": "npm run build && npx http-server dist --port 1234",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:unit": "./node_modules/.bin/mocha src/test/unit/**.mjs",
-    "hub": "./node_modules/.bin/selenium-standalone start",
-    "test:e2e": "./node_modules/.bin/mocha src/test/e2e/*.test.mjs --timeout 5000",
-    "build": "rm -rf dist && rm -rf .parcel-cache && ./node_modules/.bin/parcel build src/app/index.html"
+    "test:unit": "npx mocha src/test/unit/**.mjs",
+    "test:e2e": "npx mocha src/test/e2e/*.test.mjs --timeout 5000",
+    "build": "npx rimraf dist .parcel-cache && npx parcel build src/app/index.html"
   },
   "browserslist": [
     "last 2 chrome versions"
@@ -21,7 +20,7 @@
     "chai-as-promised": "7.1.1",
     "chromedriver": "100.0.0",
     "eslint": "6.7.2",
-    "mocha": "^8.4.0",
+    "mocha": "8.4.0",
     "selenium-webdriver": "4.1.1",
     "sinon": "7.5.0"
   },
@@ -29,6 +28,7 @@
     "he": "1.2.0",
     "http-server": "0.12.3",
     "parcel": "2.4.1",
+    "rimraf": "3.0.2",
     "todomvc-app-css": "2.3.0"
   }
 }
