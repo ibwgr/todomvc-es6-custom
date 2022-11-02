@@ -12,6 +12,9 @@
     "test:e2e": "npx mocha src/test/e2e/*.test.mjs --timeout 5000",
     "build": "npx rimraf dist .parcel-cache && npx parcel build src/app/index.html"
   },
+  "engines": {
+    "node": "19"
+  },
   "browserslist": [
     "last 2 chrome versions"
   ],
@@ -27,7 +30,7 @@
   "dependencies": {
     "he": "^1.2.0",
     "http-server": "^14.1.1",
-    "parcel": "2.4.1",
+    "parcel": "2.7.0",
     "rimraf": "3.0.2",
     "todomvc-app-css": "2.3.0"
   }
