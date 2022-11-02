@@ -1,6 +1,7 @@
 name: E2E Test (Selenium Webdriver)
 
 # on: [pull_request]
+on: [release]
 
 jobs:
   e2e:
