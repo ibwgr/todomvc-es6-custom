@@ -18,8 +18,8 @@ Build & serve web application: `npm run dev`
 `npm run test:unit`
 
 1. First, make sure an API server is running (only required if NOT using local store) \
-1. Then start frontend `npm run start:ci` \
-1. Then run e2e test against it `npm run test:e2e`
+2. Then start frontend `npm run start:ci` \
+3. Then run e2e test against it `npm run test:e2e`
 
 ### History
 **a9c8a4f**
