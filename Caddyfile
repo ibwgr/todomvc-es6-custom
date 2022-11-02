@@ -1,0 +1,7 @@
+{
+	admin off
+	http_port 8000
+}
+localhost:8000
+reverse_proxy /todo/* localhost:4567
+reverse_proxy /* localhost:1234
