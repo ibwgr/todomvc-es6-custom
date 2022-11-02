@@ -1,6 +1,6 @@
 name: E2E Test (Selenium Webdriver)
 
-on: [pull_request]
+# on: [pull_request]
 
 jobs:
   e2e:
@@ -11,19 +11,6 @@ jobs:
         with:
           node-version: 19
           cache: npm
-
-      - name: Clone API server from ibwgr/todomvc-server
-        uses: GuillaumeFalourd/clone-github-repo-action@v2
-        with:
-          owner: 'ibwgr'
-          repository: 'todomvc-server'
-
-      - name: Start API server
-        run: |
-          cd todomvc-server
-          npm ci
-          npm run start &
-
       - name: NPM install CI
         run: npm ci
       - name: Start app
@@ -32,4 +19,3 @@ jobs:
         run: npm test
         env:
           CI: true
-          API_SERVER_URL: http://localhost:3100
