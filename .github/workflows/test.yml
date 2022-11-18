@@ -1,5 +1,6 @@
 name: E2E Test (Selenium Webdriver)
 
+# on: [pull_request]
 on: [pull_request]
 
 jobs:
