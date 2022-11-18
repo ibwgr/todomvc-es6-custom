@@ -1,5 +1,5 @@
-//import Store from './store.local.mjs'
-import Store from './store.remote.await.mjs'
+import Store from './store.local.mjs'
+//import Store from './store.remote.await.mjs'
 // import Store from './store.remote.promises.js'
 import {events as viewEvents, View} from './view.mjs'
 import Controller from './controller.mjs'
