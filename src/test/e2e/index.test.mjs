@@ -17,7 +17,7 @@ describe('Index', () => {
     await driver.quit()
   })
 
-  xit('should show textfield', async () => {
+  xit('should show textfield', async () => {//return wert muss ein promise sein, wenn wartet, timeout 5000msec, dann fehler
     await driver.wait(until.elementLocated(page.newTodoSelector()))
   })
 
