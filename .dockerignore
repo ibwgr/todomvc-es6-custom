@@ -6,6 +6,5 @@ node_modules
 dist
 mochawesome-report
 self
-travis
 tutorial
 *.pem
