@@ -1,3 +1,3 @@
 export default {
-  target: 'http://localhost:1234/'
+  target: 'http://localhost:2345/'
 }

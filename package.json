@@ -6,10 +6,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "npx rimraf .parcel-cache && npx parcel src/app/index.html",
-    "start:ci": "npm run build && npx http-server dist --port 1234",
+    "start:ci": "npm run build && npx http-server dist --port 2345",
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "npx mocha src/test/unit/**.mjs",
     "test:e2e": "npx mocha src/test/e2e/*.test.mjs --timeout 5000",
+    "test:e2eDebug": "npx mocha src/test/e2e/*.test.mjs --timeout 5000 --inspect-brk",
     "build": "npx rimraf dist .parcel-cache && npx parcel build src/app/index.html",
     "postinstall": "browser-driver-manager install chromedriver"
   },

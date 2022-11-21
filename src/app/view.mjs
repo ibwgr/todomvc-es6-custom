@@ -133,7 +133,7 @@ class View {
     let elem = document.createElement('div')
     let html = this.renderItem(item)
     elem.innerHTML = html
-    this.$todoList.appendChild(elem.childNodes[0])
+    this.$todoList.prepend(elem.childNodes[0])
   }
 }
 
