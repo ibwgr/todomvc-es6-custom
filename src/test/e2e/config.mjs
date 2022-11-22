@@ -1,4 +1,4 @@
 export default {
   // Port geändert
-  target: 'http://localhost:2345/'
+  target: 'http://localhost:1234/'
 }
