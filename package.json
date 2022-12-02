@@ -11,7 +11,7 @@
     "test:unit": "npx mocha src/test/unit/**.mjs",
     "test:e2e": "npx mocha src/test/e2e/*.test.mjs --timeout 5000",
     "build": "npx rimraf dist .parcel-cache && npx parcel build src/app/index.html",
-    "postinstall": "browser-driver-manager install chromedriver"
+    "postinstall": "[[ -z $VERCEL ]] && browser-driver-manager install chromedriver"
   },
   "engines": {
     "node": "18"
