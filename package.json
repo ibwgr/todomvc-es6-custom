@@ -14,7 +14,7 @@
     "postinstall": "browser-driver-manager install chromedriver"
   },
   "engines": {
-    "node": "19"
+    "node": "18"
   },
   "browserslist": [
     "last 2 chrome versions"
