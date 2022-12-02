@@ -13,7 +13,7 @@ jobs:
           node-version: 19
           cache: npm
       - name: NPM install CI
-        run: npm ci
+        run: npm ci && npm install:chromedriver
       - name: Start app
         run: npm run start:ci &
       - name: Run test
