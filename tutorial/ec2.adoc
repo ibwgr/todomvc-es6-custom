@@ -18,7 +18,7 @@ Am Ende wirst du eine öffentlich erreichbare URL haben, auf der die Applikation
 * Du hast bei dir lokal deinen Fork von https://github.com/ibwgr/todomvc-es6-custom.
 Dein Fork muss auf dem aktuellsten Stand sein.
 * Docker, NPM und Git funktioniert bei dir lokal.
-* Du hast eine Linux basierte Umgebung.
+* Du hast eine Linux basierte Umgebung. Auf Windows reicht auch die git Bash mit aktiviertem SSH Feature https://learn.microsoft.com/de-ch/windows/terminal/tutorials/ssh.
 Sämtliche Befehle und Beispiele sind nicht für Windows ausgelegt.
 
 == Server in AWS Cloud erstellen
@@ -41,6 +41,8 @@ Im folgenden Video siehst du, wie das geht:
 
 video::media/create-instance-cut.mp4[width=600]
 
+EC2 (Elastic Compute Cloud) ist ein Service von AWS. Eine EC2 Instanz ist eine virtuelle Maschine, welche in einem Rechenzentrum von AWS läuft. AWS (Amazon Web Services) ist die Cloud-Dienstleistung von Amazon.
+
 
 == Verbinden & Clonen
 
@@ -59,7 +61,7 @@ TIP: Du brauchst die pem-Datei (KeyPair) aus dem vorigen Schritt.
 * [ ] Login via SSH auf dem AWS Server
 * [ ] Clone GitHub Repository Fork
 
-WARNING: Clone unbedingt deinen eigenen Fork.
+WARNING: Clone unbedingt deinen eigenen Fork via https URL.
 
 Im folgenden Video siehst du, wie das geht:
 
@@ -200,7 +202,7 @@ sudo snap install docker
 
 ==== Container starten
 
-Starte die Container zuest ohne -d Option, um etwaige Fehler direkt zu sehen.
+Starte die Container zuerst ohne -d Option, um etwaige Fehler direkt zu sehen.
 
 [source,bash]
 ----

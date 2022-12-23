@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="generator" content="Asciidoctor 2.0.17">
 <title>TodoMVC AWS EC2 Setup</title>
 <style>
 @import url(asciidoctor.css);
@@ -43,6 +43,7 @@ html, body {
 }
 
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
 </head>
 <body class="article">
 <div id="header">
@@ -123,7 +124,7 @@ Dein Fork muss auf dem aktuellsten Stand sein.</p>
 <p>Docker, NPM und Git funktioniert bei dir lokal.</p>
 </li>
 <li>
-<p>Du hast eine Linux basierte Umgebung.
+<p>Du hast eine Linux basierte Umgebung. Auf Windows reicht auch die git Bash mit aktiviertem SSH Feature <a href="https://learn.microsoft.com/de-ch/windows/terminal/tutorials/ssh" class="bare">https://learn.microsoft.com/de-ch/windows/terminal/tutorials/ssh</a>.
 Sämtliche Befehle und Beispiele sind nicht für Windows ausgelegt.</p>
 </li>
 </ul>
@@ -175,6 +176,9 @@ Port 22 (SSH) ist bereits offen.</p>
 Your browser does not support the video tag.
 </video>
 </div>
+</div>
+<div class="paragraph">
+<p>EC2 (Elastic Compute Cloud) ist ein Service von AWS. Eine EC2 Instanz ist eine virtuelle Maschine, welche in einem Rechenzentrum von AWS läuft. AWS (Amazon Web Services) ist die Cloud-Dienstleistung von Amazon.</p>
 </div>
 </div>
 </div>
@@ -233,7 +237,7 @@ Du brauchst die pem-Datei (KeyPair) aus dem vorigen Schritt.
 <div class="title">⚠️</div>
 </td>
 <td class="content">
-Clone unbedingt deinen eigenen Fork.
+Clone unbedingt deinen eigenen Fork via https URL.
 </td>
 </tr>
 </table>
@@ -311,7 +315,7 @@ Your browser does not support the video tag.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd ~/clones/todomvc-es6-custom</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ~/clones/todomvc-es6-custom</code></pre>
 </div>
 </div>
 <div class="sect4">
@@ -349,7 +353,7 @@ Du kannst das überprüfen, indem du lokal <code>npm run build</code> ausführst
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker build --tag ideadapt/todomvc-client:latest .
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build --tag ideadapt/todomvc-client:latest .
 docker push ideadapt/todomvc-client:latest</code></pre>
 </div>
 </div>
@@ -363,7 +367,7 @@ Ebenfalls wird der Pfad des ersten Befehls (cd) bei dir anders sein.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd ~/clones/todomvc-java-server
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ~/clones/todomvc-java-server
 docker build --tag ideadapt/todomvc-java-server:latest .
 docker push ideadapt/todomvc-java-server:latest</code></pre>
 </div>
@@ -382,7 +386,7 @@ Ersetze also ideadapt durch deine Docker Hub Account ID. Pushe die Änderungen a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cd ~/clones/todomvc-es6-custom
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ~/clones/todomvc-es6-custom
 # Image Name ändern
 git add docker-compose.yml
 git commit -m "set my personal docker hub account id"
@@ -438,7 +442,7 @@ git push</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">ssh -i todomvc-ec2.pem ubuntu@ec2-54-198-196-156.compute-1.amazonaws.com
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ssh -i todomvc-ec2.pem ubuntu@ec2-54-198-196-156.compute-1.amazonaws.com
 cd todomvc-es6-custom
 git pull origin master</code></pre>
 </div>
@@ -454,7 +458,7 @@ In der echten Welt würde die .env Datei, bevor docker-compose gestartet wird, e
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cp dev.env .env</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cp dev.env .env</code></pre>
 </div>
 </div>
 </div>
@@ -466,18 +470,18 @@ Das lässt sich einfach mit einem Befehl nachholen:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo snap install docker</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo snap install docker</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_container_starten">Container starten</h4>
 <div class="paragraph">
-<p>Starte die Container zuest ohne -d Option, um etwaige Fehler direkt zu sehen.</p>
+<p>Starte die Container zuerst ohne -d Option, um etwaige Fehler direkt zu sehen.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo docker-compose up</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo docker-compose up</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -534,11 +538,15 @@ Sprich: Wenn wir etwas auf den master Branch pushen, wird es direkt auf AWS depl
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-09 17:21:25 UTC
+Last updated 2022-12-23 12:33:41 UTC
 </div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
 </body>
 </html>
