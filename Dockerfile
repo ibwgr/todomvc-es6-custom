@@ -15,7 +15,8 @@ ENV NODE_ENV production
 # Install production dependencies only.
 RUN npm install --production
 
-# Copy all (not ignored) files in Dockerfile directory to current workdir (/usr/src) in container
+# Copy all (not ignored by .dockerignore) files in Dockerfile directory to current workdir (/usr/src) in container
+# chown (Change Owner) sets the owner and group of each copied file to node (user) and node (group).
 COPY --chown=node:node . .
 
 # Build the client application
