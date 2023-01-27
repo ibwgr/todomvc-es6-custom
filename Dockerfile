@@ -22,22 +22,21 @@ COPY --chown=node:node . .
 # Build the client application
 RUN npm run build
 
-# Base image. 2nd stage. node:lts-alpine. Much smaller final image size.
-FROM node@sha256:2ae9624a39ce437e7f58931a5747fdc60224c6e40f8980db90728de58e22af7c
+# Base image. 2nd stage. very slim, minimalistic httpd based static webserver. Much smaller final image size.
+FROM lipanski/docker-static-website:latest
 MAINTAINER Ueli Kunz <kunz@ideadapt.net>
 
 # run application as user node
-USER node
 WORKDIR /usr/src
 
 ENV NODE_ENV production
 
 # copy files from build state to current workdir
-COPY --chown=node:node --from=build /usr/src/node_modules node_modules
-COPY --chown=node:node --from=build /usr/src/dist dist
+COPY --from=build /usr/src/dist .
+COPY httpd.conf .
 
 # Make port accessible from outside the container
 EXPOSE 1234
 
-# Start process in container: static http web server serving dist folder on port 1234
-CMD ["./node_modules/.bin/http-server", "dist", "--port", "1234"]
+# Start process in container: static http web server serving /usr/src folder on port 1234
+CMD ["/busybox", "httpd", "-f", "-v", "-p", "1234", "-c", "httpd.conf"]
