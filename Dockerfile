@@ -23,7 +23,7 @@ COPY --chown=node:node . .
 RUN npm run build
 
 # Base image. 2nd stage. very slim, minimalistic httpd based static webserver. Much smaller final image size.
-FROM lipanski/docker-static-website:latest
+FROM lipanski/docker-static-website:2.1.0
 MAINTAINER Ueli Kunz <kunz@ideadapt.net>
 
 # run application as user node
